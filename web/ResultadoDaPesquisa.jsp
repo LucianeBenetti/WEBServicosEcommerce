@@ -15,26 +15,30 @@
     </head>
     <body>
         <h1>Resultado da Pesquisa!</h1>
-        
+
         <%
-            
+
             Object obj = request.getAttribute("itensenccontrados");
-            
-            if(obj != null){
+
+            String descricaoProduto = null;
+            String nome = null;
+            Double valor = 0.0;
+
+            if (obj != null) {
                 ArrayList<Item> itens = (ArrayList<Item>) obj;
-                    for(Item item: itens){
-                    out.println(itens);               
-                                }
+                for (int i = 0; i < itens.size(); i++) {
+                    descricaoProduto = itens.get(i).getDescricao();
+                    nome = itens.get(i).getNome();
+                    valor = itens.get(i).getValor();
+                }
+                
+                out.println(descricaoProduto);
+                out.println(nome);
+                out.println(valor);
             }
-        
+
         %>
+
         
-        <div class="col-sm-4"> 
-      <div class="panel panel-danger">
-        <div class="panel-heading">Violão Takasena.</div>
-        <div class="panel-body"><img src="takamine.jpg" class="img-responsive" style="width:100%" alt="Violão Takamine"></div>
-        <div class="panel-footer">Violão Takasena corda de Lynon! Só R$ 15,00.</div>
-      </div>
-    </div>
     </body>
 </html>
