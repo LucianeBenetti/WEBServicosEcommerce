@@ -1,19 +1,23 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controle.DAO;
 
 import controle.VO.Item;
-import controle.VO.RepositorioItemList;
-import controle.VO.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-public class ItemDAO {
-
-    public ArrayList<Item> pesquisarItem(String descProduto) {
+/**
+ *
+ * @author luciane
+ */
+public class ItemDAO1 {
+   public ArrayList<Item> pesquisarItem(String descProduto) {
     
 
     String query = "SELECT *from item " + " where descricao like ? ";
