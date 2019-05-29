@@ -1,10 +1,8 @@
 package servicos;
 
-import controle.DAO.ItemDAO;
+import controle.DAO.DAOItem;
 import controle.VO.Item;
-import controle.VO.RepositorioItemList;
 import controle.integracao.ItemDAOJSON;
-import controle.integracao.ItemDAOXML;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ public class ServicoItem extends HttpServlet {
 
         String descProduto = request.getParameter("descricaoproduto");
         Item item = null;
-        ItemDAO itemDAO = new ItemDAO();
+        DAOItem itemDAO = new DAOItem();
         ArrayList<Item> itensPesquisados = new ArrayList<Item>();
         itensPesquisados = itemDAO.pesquisarItem(descProduto);
         String itemJSON = null;

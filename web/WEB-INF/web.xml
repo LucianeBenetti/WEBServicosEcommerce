@@ -4,13 +4,37 @@
         <servlet-name>ServicoItem</servlet-name>
         <servlet-class>servicos.ServicoItem</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CrudEcommerce</servlet-name>
+        <servlet-class>servicos.CrudEcommerce</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CrudComprar</servlet-name>
+        <servlet-class>servicos.CrudComprar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicoItem</servlet-name>
         <url-pattern>/servicoitem</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BuscaItem</servlet-name>
+        <servlet-class>servicos.BuscaItem</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BuscaItem</servlet-name>
+        <url-pattern>/buscaitem</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>LuMarEcommerce.jsp</welcome-file>
     </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>CrudEcommerce</servlet-name>
+        <url-pattern>/crudecommerce</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CrudComprar</servlet-name>
+        <url-pattern>/crudcomprar</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

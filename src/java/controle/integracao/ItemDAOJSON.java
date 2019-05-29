@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import controle.VO.Item;
-import controle.VO.RepositorioItemList;
 import java.util.ArrayList;
 
 /**

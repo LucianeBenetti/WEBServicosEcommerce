@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controle.DAO;
 
 import controle.VO.Item;
@@ -12,12 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author luciane
- */
-public class ItemDAO1 {
-   public ArrayList<Item> pesquisarItem(String descProduto) {
+public class DAOItem {
+ public ArrayList<Item> pesquisarItem(String descProduto) {
     
 
     String query = "SELECT *from item " + " where descricao like ? ";
@@ -47,9 +38,3 @@ public class ItemDAO1 {
  
     }
 }
-    
-    
-    
-    
-    
-    

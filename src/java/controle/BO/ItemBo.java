@@ -1,7 +1,7 @@
 
 package controle.BO;
 
-import controle.DAO.ItemDAO;
+import controle.DAO.ItemDAO1;
 import controle.VO.Item;
 
 public class ItemBo {
