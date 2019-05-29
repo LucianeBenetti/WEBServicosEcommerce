@@ -23,13 +23,13 @@ public class ServicoItem extends HttpServlet {
         String descProduto = request.getParameter("descricaoproduto");
         Item item=null;
         ItemDAO itemDAO = new ItemDAO();
-        ArrayList<Item> itemPesquisado = new ArrayList<Item>();
-        itemPesquisado = itemDAO.pesquisarItem(descProduto);
+        ArrayList<Item> itensPesquisado = new ArrayList<Item>();
+        itensPesquisado = itemDAO.pesquisarItem(descProduto);
         String itemJSON = null;
 
-        if (itemPesquisado != null) {
+        if (itensPesquisado != null) {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
-            itemJSON = itemDAOJSON.serializa(itemPesquisado);
+            itemJSON = itemDAOJSON.serializa(itensPesquisado);
             //request.setAttribute("itensenccontrados", itensEncontrados);
 //            request.getRequestDispatcher("ResultadoDaPesquisa.jsp").forward(request, response);
             PrintWriter out = response.getWriter();
@@ -37,9 +37,9 @@ public class ServicoItem extends HttpServlet {
             out.println();
               
              itemDAOJSON = new ItemDAOJSON();
-            itemPesquisado = itemDAOJSON.desserializa(itemJSON);
+            itensPesquisado = itemDAOJSON.desserializa(itemJSON);
              out = response.getWriter();
-            out.print(itemPesquisado);   
+            out.print(itensPesquisado);   
 
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
