@@ -42,8 +42,7 @@ public class ItemDAOXML {
     }
 
     public String serializa(ArrayList<Item> listaDeItens) {
-        String xmlContent = "";
-        System.out.println(listaDeItens);
+        String xmlContent = "";        
 
         try {
             JAXBContext jaxbContext;

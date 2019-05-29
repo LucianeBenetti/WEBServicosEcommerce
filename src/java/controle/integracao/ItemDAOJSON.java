@@ -7,6 +7,7 @@ package controle.integracao;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import controle.VO.Item;
 import controle.VO.RepositorioItemList;
 import java.util.ArrayList;
@@ -16,13 +17,16 @@ import java.util.ArrayList;
  * @author 80119050
  */
 public class ItemDAOJSON {
-
-  
-
-    public RepositorioItemList desserializa(String s) {
+    
+    
+    public ArrayList<Item> desserializa(String s) {
+        System.out.println(s);
         Gson gson = new GsonBuilder().create();
-        RepositorioItemList rep = (RepositorioItemList) gson.fromJson(s, RepositorioItemList.class);
-        return rep;
+        
+        ArrayList<Item> listaDeItensFromJSON = (ArrayList<Item>) gson.fromJson(s,
+                        new TypeToken<ArrayList<Item>>() {
+                        }.getType());
+        return listaDeItensFromJSON;
     }
 
     public String serializa(ArrayList<Item> listaDeItens) {

@@ -45,17 +45,17 @@
 </head>
 <body>
 
-<div class="jumbotron">
-  <div class="container text-center">
-    <h3>Digital LuMar - Confira abaixo os produtos oferecidos pela melhor loja da Internet, 
-        ou pesquise por um produto específico</h3>
-      <form class="form-inline" action="crudecommerce" method="post">
+<div class="container">
+  
+    <h4>Digital LuMar - Confira abaixo os produtos oferecidos pela melhor loja da Internet, 
+        ou pesquise por um produto específico</h4>
+      <form action="servicoitem" method="get">
         Pesquise aqui:
-        <input type="text" class="form-control" size="60" name="pesquisar" placeholder="Digite a descrição de um produto!">
-        <input type="submit" class="form-control" value="Pesquisar!"><br><br>
+        <input type="text"  size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
+        <input type="submit"  value="Pesquisar!"><br><br>
     
     </form>
-  </div>
+ 
 </div>
 
 <nav class="navbar navbar-inverse">

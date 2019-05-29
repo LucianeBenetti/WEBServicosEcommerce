@@ -1,6 +1,6 @@
 package servicos;
 
-import controle.DAO.ItemDao;
+import controle.DAO.ItemDAO;
 import controle.VO.Item;
 import controle.VO.RepositorioItemList;
 import controle.integracao.ItemDAOJSON;
@@ -20,80 +20,106 @@ public class ServicoItem extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ItemDao itemDao = new ItemDao();
-        ArrayList<Item> listaDeItens = new ArrayList<Item>();
-        listaDeItens = itemDao.pesquisarItem();
-        
+        String descProduto = request.getParameter("descricaoproduto");
+        Item item=null;
+        ItemDAO itemDAO = new ItemDAO();
+        ArrayList<Item> itemPesquisado = new ArrayList<Item>();
+        itemPesquisado = itemDAO.pesquisarItem(descProduto);
+        String itemJSON = null;
+
+        if (itemPesquisado != null) {
+            ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
+            itemJSON = itemDAOJSON.serializa(itemPesquisado);
+            //request.setAttribute("itensenccontrados", itensEncontrados);
+//            request.getRequestDispatcher("ResultadoDaPesquisa.jsp").forward(request, response);
+            PrintWriter out = response.getWriter();
+            out.print(itemJSON);
+            out.println();
+              
+             itemDAOJSON = new ItemDAOJSON();
+            itemPesquisado = itemDAOJSON.desserializa(itemJSON);
+             out = response.getWriter();
+            out.print(itemPesquisado);   
+
+        } else {
+            System.out.println("A pesquisa do item retornou vazio. Sem item!");
+        }
+
+     //   if (itemJSON != null) {
+                 
+
+  //      }
+
 //        RepositorioItemList rep = new RepositorioItemList();
 //        List<Item> lista = rep.getLista();
-
-        if (listaDeItens.size() == 0) {
-            response.setStatus(500);
-        } else {
-            response.setStatus(200);
-            ItemDAOJSON itemDAOJSON;
-
-            String responseFormat = request.getHeader("accept");
-
-            if (responseFormat != null && responseFormat.equals("JSON")) {
-                response.setContentType("application/json;charset=UTF-8");
-                itemDAOJSON = new ItemDAOJSON();
-                itemDAOJSON.serializa(listaDeItens);
-                PrintWriter out = response.getWriter();
-                out.print(itemDAOJSON.serializa(listaDeItens));
-
-            } else {
-                response.setContentType("text/xml;charset=UTF-8");
-                ItemDAOXML itemDAOXML = new ItemDAOXML();
-                itemDAOXML.serializa(listaDeItens);
-                PrintWriter out = response.getWriter();
-                out.print(itemDAOXML.serializa(listaDeItens));
-            }
-
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-//
-//        RepositorioAlunoList rep = new RepositorioAlunoList();
-//        List<Aluno> lista = rep.getLista();
-//
-//        String nome = request.getParameter("nome");
-//        String matricula = request.getParameter("matricula");
-//        String email = request.getParameter("email");
-//
-//        Aluno a = new Aluno();
-//        a.setNome(nome);
-//        a.setMatricula(matricula);
-//        a.setEmail(email);
-//
-//        lista.add(a);
-//        DAOAluno daoAluno;
-//        String responseFormat = request.getHeader("accept");
-//        if (responseFormat != null && responseFormat.equals("JSON")) {
-//            response.setContentType("application/json;charset=UTF-8");
-//            daoAluno = new DAOAlunoJSON();
+//        if (listaDeItens.size() == 0) {
+//            response.setStatus(500);
 //        } else {
-//            response.setContentType("text/xml;charset=UTF-8");
-//            daoAluno = new DAOAlunoXML();
+//            response.setStatus(200);
+//            ItemDAOJSON itemDAOJSON;      
+//            
+//            String responseFormat = request.getHeader("accept");
+//
+//            if (responseFormat != null && responseFormat.equals("JSON")) {
+//                response.setContentType("application/json;charset=UTF-8");
+//                itemDAOJSON = new ItemDAOJSON();
+//                itemDAOJSON.serializa(listaDeItens);
+//                PrintWriter out = response.getWriter();
+//                out.print(itemDAOJSON.serializa(listaDeItens));
+//                System.out.println(listaDeItens);
+//
+//            } else {
+//                response.setContentType("text/xml;charset=UTF-8");
+//                ItemDAOXML itemDAOXML = new ItemDAOXML();
+//                itemDAOXML.serializa(listaDeItens);
+//                PrintWriter out = response.getWriter();
+//                out.print(itemDAOXML.serializa(listaDeItens));
+//                System.out.println(listaDeItens);
+//            }
+//
 //        }
-//        response.setStatus(200);
-//        PrintWriter out = response.getWriter();
-//        out.print(daoAluno.serializa(rep));
     }
 
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+////
+////        RepositorioAlunoList rep = new RepositorioAlunoList();
+////        List<Aluno> lista = rep.getLista();
+////
+////        String nome = request.getParameter("nome");
+////        String matricula = request.getParameter("matricula");
+////        String email = request.getParameter("email");
+////
+////        Aluno a = new Aluno();
+////        a.setNome(nome);
+////        a.setMatricula(matricula);
+////        a.setEmail(email);
+////
+////        lista.add(a);
+////        DAOAluno daoAluno;
+////        String responseFormat = request.getHeader("accept");
+////        if (responseFormat != null && responseFormat.equals("JSON")) {
+////            response.setContentType("application/json;charset=UTF-8");
+////            daoAluno = new DAOAlunoJSON();
+////        } else {
+////            response.setContentType("text/xml;charset=UTF-8");
+////            daoAluno = new DAOAlunoXML();
+////        }
+////        response.setStatus(200);
+////        PrintWriter out = response.getWriter();
+////        out.print(daoAluno.serializa(rep));
+//    }
+//
+//    @Override
+//    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//
+//    }
+//
+//    @Override
+//    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//
+//    }
 }
