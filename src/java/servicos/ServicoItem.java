@@ -21,63 +21,34 @@ public class ServicoItem extends HttpServlet {
             throws ServletException, IOException {
 
         String descProduto = request.getParameter("descricaoproduto");
-        Item item=null;
+        Item item = null;
         ItemDAO itemDAO = new ItemDAO();
-        ArrayList<Item> itensPesquisado = new ArrayList<Item>();
-        itensPesquisado = itemDAO.pesquisarItem(descProduto);
+        ArrayList<Item> itensPesquisados = new ArrayList<Item>();
+        itensPesquisados = itemDAO.pesquisarItem(descProduto);
         String itemJSON = null;
 
-        if (itensPesquisado != null) {
+        if (itensPesquisados != null) {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
-            itemJSON = itemDAOJSON.serializa(itensPesquisado);
-            //request.setAttribute("itensenccontrados", itensEncontrados);
-//            request.getRequestDispatcher("ResultadoDaPesquisa.jsp").forward(request, response);
+            itemJSON = itemDAOJSON.serializa(itensPesquisados);
+           
             PrintWriter out = response.getWriter();
-            out.print(itemJSON);
-            out.println();
-              
-             itemDAOJSON = new ItemDAOJSON();
-            itensPesquisado = itemDAOJSON.desserializa(itemJSON);
-             out = response.getWriter();
-            out.print(itensPesquisado);   
+          //  out.print(itemJSON);
 
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
         }
 
-     //   if (itemJSON != null) {
-                 
+        if (itemJSON != null) {
 
-  //      }
+            ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
+            itensPesquisados = itemDAOJSON.desserializa(itemJSON);
+            PrintWriter out = response.getWriter();
+           // out.print(itensPesquisados);
+            request.setAttribute("itensenccontrados", itensPesquisados);
+            request.getRequestDispatcher("ResultadoDaPesquisa.jsp").forward(request, response);
 
-//        RepositorioItemList rep = new RepositorioItemList();
-//        List<Item> lista = rep.getLista();
-//        if (listaDeItens.size() == 0) {
-//            response.setStatus(500);
-//        } else {
-//            response.setStatus(200);
-//            ItemDAOJSON itemDAOJSON;      
-//            
-//            String responseFormat = request.getHeader("accept");
-//
-//            if (responseFormat != null && responseFormat.equals("JSON")) {
-//                response.setContentType("application/json;charset=UTF-8");
-//                itemDAOJSON = new ItemDAOJSON();
-//                itemDAOJSON.serializa(listaDeItens);
-//                PrintWriter out = response.getWriter();
-//                out.print(itemDAOJSON.serializa(listaDeItens));
-//                System.out.println(listaDeItens);
-//
-//            } else {
-//                response.setContentType("text/xml;charset=UTF-8");
-//                ItemDAOXML itemDAOXML = new ItemDAOXML();
-//                itemDAOXML.serializa(listaDeItens);
-//                PrintWriter out = response.getWriter();
-//                out.print(itemDAOXML.serializa(listaDeItens));
-//                System.out.println(listaDeItens);
-//            }
-//
-//        }
+        }
+     
     }
 
 //    @Override
@@ -122,4 +93,33 @@ public class ServicoItem extends HttpServlet {
 //            throws ServletException, IOException {
 //
 //    }
+    
+ //     RepositorioItemList rep = new RepositorioItemList();
+//        List<Item> lista = rep.getLista();
+//        if (listaDeItens.size() == 0) {
+//            response.setStatus(500);
+//        } else {
+//            response.setStatus(200);
+//            ItemDAOJSON itemDAOJSON;      
+//            
+//            String responseFormat = request.getHeader("accept");
+//
+//            if (responseFormat != null && responseFormat.equals("JSON")) {
+//                response.setContentType("application/json;charset=UTF-8");
+//                itemDAOJSON = new ItemDAOJSON();
+//                itemDAOJSON.serializa(listaDeItens);
+//                PrintWriter out = response.getWriter();
+//                out.print(itemDAOJSON.serializa(listaDeItens));
+//                System.out.println(listaDeItens);
+//
+//            } else {
+//                response.setContentType("text/xml;charset=UTF-8");
+//                ItemDAOXML itemDAOXML = new ItemDAOXML();
+//                itemDAOXML.serializa(listaDeItens);
+//                PrintWriter out = response.getWriter();
+//                out.print(itemDAOXML.serializa(listaDeItens));
+//                System.out.println(listaDeItens);
+//            }
+//
+//        }
 }
