@@ -114,7 +114,7 @@
             </div>
             <div class="col-sm-6">
                 <div>
-                    <button type="button" class="btn btn-danger btn-block">Comprar</button>                                    
+                    <button type="button" class="btn btn-danger btn-block" onclick="alertaDeCompra()">Comprar</button>                                    
                 </div><br>
                 <div>                                    
                     <button type="button" class="btn btn-warning btn-block">Adicionar ao Carrinho</button>
@@ -136,7 +136,7 @@
             </div>
             <div class="col-sm-6">
                 <div>
-                    <button type="button" class="btn btn-danger btn-block">Comprar</button>                                    
+                    <button type="button" class="btn btn-danger btn-block" onclick="alertaDeCompra()">Comprar</button>                                    
                 </div><br>
                 <div>                                    
                     <button type="button" class="btn btn-warning btn-block">Adicionar ao Carrinho</button>
