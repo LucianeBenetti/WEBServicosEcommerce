@@ -77,7 +77,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="Login.jsp"><span class="glyphicon glyphicon-user"></span> Fazer Login</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+        <li><a href="Carrinho.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
       </ul>
     </div>
   </div>

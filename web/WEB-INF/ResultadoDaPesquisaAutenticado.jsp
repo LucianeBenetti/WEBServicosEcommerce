@@ -1,11 +1,11 @@
 <%-- 
-    Document   : ResultadoDaPesquisa
-    Created on : 28/05/2019, 15:31:04
+    Document   : ResultadoDaPesquisaAutenticado
+    Created on : 30/05/2019, 14:56:07
     Author     : 80119050
 --%>
 
-<%@page import="controle.VO.Item"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="controle.VO.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,13 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script>
-        function alertaDeCompra() {
-            alert("Para realizar uma compra, você precisa fazer login! Para isso, clique no botão 'Fazer Login' à direita da tela!");
-        }
-
-        function adicionarAoCarro() {
-            alert("Para adiconar um item ao Carrinho, você precisa fazer login! Para isso, clique no botão 'Fazer Login' à direita da tela!");
-        }
+        
     </script>
 
     <style>
@@ -118,7 +112,7 @@
             </div>
             <div class="col-sm-6">
                 <div>                                    
-                    <button type="button" class="btn btn-warning btn-block" onclick="adicionarAoCarro()">Adicionar ao Carrinho</button>
+                    <button type="button" class="btn btn-warning btn-block">Adicionar ao Carrinho</button>
                 </div>
             </div>
         </div>                        
@@ -137,7 +131,7 @@
             </div>
             <div class="col-sm-6">
                 <div>                                    
-                    <button type="button" class="btn btn-warning btn-block" onclick="adicionarAoCarro()">Adicionar ao Carrinho</button>
+                    <button type="button" class="btn btn-warning btn-block">Adicionar ao Carrinho</button>
                 </div>
             </div>
         </div>

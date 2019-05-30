@@ -28,9 +28,9 @@ public class ServicoItem extends HttpServlet {
         if (itensPesquisados != null) {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
             itemJSON = itemDAOJSON.serializa(itensPesquisados);
-           
+
             PrintWriter out = response.getWriter();
-          //  out.print(itemJSON);
+            //  out.print(itemJSON);
 
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
@@ -41,12 +41,14 @@ public class ServicoItem extends HttpServlet {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
             itensPesquisados = itemDAOJSON.desserializa(itemJSON);
             PrintWriter out = response.getWriter();
-           // out.print(itensPesquisados);
+            // out.print(itensPesquisados);
             request.setAttribute("itensenccontrados", itensPesquisados);
-            request.getRequestDispatcher("ResultadoDaPesquisa.jsp").forward(request, response);
+
+            String page = request.getSession().getAttribute("usuarioAutenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
+            request.getRequestDispatcher(page).forward(request, response);
 
         }
-     
+
     }
 
 //    @Override
@@ -91,8 +93,7 @@ public class ServicoItem extends HttpServlet {
 //            throws ServletException, IOException {
 //
 //    }
-    
- //     RepositorioItemList rep = new RepositorioItemList();
+    //     RepositorioItemList rep = new RepositorioItemList();
 //        List<Item> lista = rep.getLista();
 //        if (listaDeItens.size() == 0) {
 //            response.setStatus(500);
