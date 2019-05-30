@@ -103,8 +103,25 @@
                     valor = itens.get(i).getValor();
                     
                     if(descricaoProduto.equals("Bola de volei")){
-                        out.print(descricaoProduto +" "); %> 
-                        <img src="bolareduzida.jpg"> <button>Adicionar ao Carrinho</button>
+                        %>                          
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Bola de vôlei Mikasena</div>
+                                    <div class="panel-body"><img src="bolapraia.jpg" class="img-responsive" style="width:58%" alt="Bola de vôlei de praia"></div>
+                                    <div class="panel-footer">A melhor bola de vôlei de praia! Só R$ 3,00.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="button btn-danger">
+                                    <button>Comprar</button>                                    
+                                </div>
+                                <div class="button btn-primary">                                    
+                                    <button>Adicionar ao Carrinho</button>
+                                </div>
+                            </div>
+                        </div>                        
+                        
                         <%
                     }else if(descricaoProduto.equals("Violao")){
                         out.print(descricaoProduto +" "); %> 
