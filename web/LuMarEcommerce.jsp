@@ -52,7 +52,7 @@
       <form action="servicoitem" method="get">
         Pesquise aqui:
         <input type="text"  size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
-        <input type="submit"  value="Pesquisar!"><br><br>
+        <input class="btn btn-info" type="submit"  value="Pesquisar!"><br><br>
     
     </form>
  
