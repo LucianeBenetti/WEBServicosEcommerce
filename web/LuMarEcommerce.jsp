@@ -18,7 +18,11 @@
   <script>
     function alertaDeCompra() {      
         alert("Para realizar uma compra, você precisa fazer login! Para isso, clique no botão 'Fazer Login' à direita da tela!");       
-      }    
+      } 
+      
+    function alertaCarrinho() {      
+        alert("Para adiconar um item ao Carrinho, você precisa fazer login! Para isso, clique no botão 'Fazer Login' à direita da tela!");       
+      }  
   </script>
   
   <style>
@@ -77,7 +81,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="Login.jsp"><span class="glyphicon glyphicon-user"></span> Fazer Login</a></li>
-        <li><a href="Carrinho.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+        <li><a href="" onclick="alertaCarrinho()"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
       </ul>
     </div>
   </div>

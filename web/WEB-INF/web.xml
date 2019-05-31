@@ -12,6 +12,10 @@
         <servlet-name>CrudComprar</servlet-name>
         <servlet-class>servicos.CrudComprar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Carrinho</servlet-name>
+        <servlet-class>servicos.Carrinho</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServicoItem</servlet-name>
         <url-pattern>/servicoitem</url-pattern>
@@ -34,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>CrudComprar</servlet-name>
         <url-pattern>/crudcomprar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Carrinho</servlet-name>
+        <url-pattern>/carrinho</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
