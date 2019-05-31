@@ -22,40 +22,41 @@ public class Pedido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        String pedido = request.getParameter("pedido");
         Double valorTotal = 0.0;
         Double valorPedido = 0.0;
+        if (pedido != null) {
+            ArrayList<PedidoCompra> pedidoUsuario = new ArrayList<PedidoCompra>();
+            DecimalFormat df = new DecimalFormat("0.00");
 
-        ArrayList<PedidoCompra> pedidoUsuario = new ArrayList<PedidoCompra>();
-        DecimalFormat df = new DecimalFormat("0.00");
+            for (int i = 0; i < pedidoUsuario.size(); i++) {
 
-        for (int i = 0; i < pedidoUsuario.size(); i++) {
+                int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
+                int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
+                int codigoItemPedido = pedidoUsuario.get(i).getItensDePedido().getCodigoItemPedido();
+                String nomeDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getNome();
+                Double valorDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getValor();
+                String detalheDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDetalhes();
+                String descricaoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDescricao();
+                String quantidade = request.getParameter("quantidade_" + i);
+                int qtidade = Integer.valueOf(quantidade);
+                Date dataPedido = null;
 
-            int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
-            int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
-            int codigoItemPedido = pedidoUsuario.get(i).getItensDePedido().getCodigoItemPedido();
-            String nomeDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getNome();
-            Double valorDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getValor();
-            String detalheDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDetalhes();
-            String descricaoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDescricao();
-            String quantidade = request.getParameter("quantidade_" + i);
-            int qtidade = Integer.valueOf(quantidade);
-            Date dataPedido = null;
+                Item item = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
+                ItemPedido itemPedido = new ItemPedido(codigoItemPedido, qtidade, item);
+                PedidoCompra pedidoCompra = new PedidoCompra(codigoPedido, itemPedido, dataPedido);
+                pedidoUsuario.add(pedidoCompra);
 
-            Item item = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
-            ItemPedido itemPedido = new ItemPedido(codigoItemPedido, qtidade, item);
-            PedidoCompra pedidoCompra = new PedidoCompra(codigoPedido, itemPedido, dataPedido);
-            pedidoUsuario.add(pedidoCompra);
-
-            valorPedido = valorDoItem * qtidade;
-            valorTotal += valorPedido;
+                valorPedido = valorDoItem * qtidade;
+                valorTotal += valorPedido;
+            }
+            HttpSession session = request.getSession();
+            session.setAttribute("pedidoUsuario", pedidoUsuario);
+            request.setAttribute("valortotal", df.format(valorTotal));
+            request.setAttribute("valorpedido", df.format(valorPedido));
+            request.setAttribute("pedidoUsuario", pedidoUsuario);
         }
-        HttpSession session = request.getSession();
-        session.setAttribute("pedidoUsuario", pedidoUsuario);
-        request.setAttribute("valortotal", df.format(valorTotal));
-        request.setAttribute("valorpedido", df.format(valorPedido));
-        request.setAttribute("pedidoUsuario", pedidoUsuario);
-
-        request.getRequestDispatcher("pedidoCliente.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/MostrarPedido.jsp").forward(request, response);
 
     }
 
