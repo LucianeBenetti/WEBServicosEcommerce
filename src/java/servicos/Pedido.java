@@ -24,10 +24,12 @@ public class Pedido extends HttpServlet {
 
         Object listaItens = request.getSession().getAttribute("listadeitens");
         Double valorTotal = 0.0;
-        Double valorPedido = 0.0;
+        Double valorPorItem = 0.0;
+        
         if (listaItens != null) {
 
             ArrayList<Item> item = (ArrayList<Item>) listaItens;
+            
             ArrayList<Item> pedidoUsuario = new ArrayList<Item>();
             DecimalFormat df = new DecimalFormat("0.00");
 
@@ -44,14 +46,10 @@ public class Pedido extends HttpServlet {
                 Item itemPedido = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
                 pedidoUsuario.add(itemPedido);
 
-                valorPedido = valorDoItem * qtidade;
-                valorTotal += valorPedido;
+                valorPorItem = valorDoItem * qtidade;
+                valorTotal += valorPorItem;
 
-                System.out.println("item: " + item);
-                System.out.println("qtd: " + qtidade);
-
-                System.out.println("valorItem: " + valorPedido);
-                System.out.println("valorTotel  " + valorTotal);
+             
 
 //                int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
 //                int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
@@ -76,7 +74,6 @@ public class Pedido extends HttpServlet {
                 // session.setAttribute("pedidoUsuario", pedidoUsuario);
                 request.setAttribute("quantidade", qtidade);
                 request.setAttribute("valortotal", df.format(valorTotal));
-                request.setAttribute("valorpedido", df.format(valorPedido));
                 request.setAttribute("pedidoUsuario", pedidoUsuario);
             }
         }

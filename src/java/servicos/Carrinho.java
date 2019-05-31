@@ -23,6 +23,7 @@ public class Carrinho extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("listadeitens", listaDeItens);
+        
         request.setAttribute("listadeitens", listaDeItens);
         request.getRequestDispatcher("WEB-INF/Carrinho.jsp").forward(request, response);
 
