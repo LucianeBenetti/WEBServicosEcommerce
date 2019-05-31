@@ -44,9 +44,15 @@ public class ServicoItem extends HttpServlet {
             // out.print(itensPesquisados);
             request.setAttribute("itensenccontrados", itensPesquisados);
 
-            String page = request.getSession().getAttribute("usuarioAutenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
-            request.getRequestDispatcher(page).forward(request, response);
-
+            String page = (String) request.getSession().getAttribute("usuarioautenticado");
+                    
+                if(page != null)  {
+                    request.getRequestDispatcher("WEB-INF/ResultadoDaPesquisaAutenticado.jsp").forward(request, response);
+                    
+                }else{
+                    request.getRequestDispatcher("ResultadoDaPesquisa.jsp").forward(request, response);
+                   }
+                  
         }
 
     }
