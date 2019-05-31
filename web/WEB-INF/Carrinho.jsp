@@ -45,52 +45,53 @@
 </head>
 <body>
 
-   
+<form action="pedido" method="POST">
     <div class="container">
         <h2>Itens adicionados ao Carrinho!</h2>
 
         <%
+            Object obj = request.getAttribute("listadeitens");
+            ArrayList<Item> listaDeItens = (ArrayList<Item>) obj;
 
-//            Object obj = request.getAttribute("itensenccontrados");
-//
-//            String descricaoProduto = null;
-//            String nome = null;
-//            Double valor = 0.0;
-//
-//            if (obj != null) {
-//                ArrayList<Item> itens = (ArrayList<Item>) obj;
-//                for (int i = 0; i < itens.size(); i++) {
-//                    descricaoProduto = itens.get(i).getDescricao();
-//                    nome = itens.get(i).getNome();
-//                    valor = itens.get(i).getValor();
-//
-//                    if (descricaoProduto.equals("Bola de volei")) {
-        %>                          
-        
+            if (listaDeItens != null) {
+
+                for (int i = 0; i < listaDeItens.size(); i++) {
+
+        %>   
+        <form action="pedidocompra" method="POST">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Item</th>
-                    <th>Quantidade</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
                     <th>Preço</th>
-                    <th>Total</th>
+                    <th>Qntde</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Violão</td>
-                    <td>1</td>
-                    <td>RS 10,00</td>
-                    <td>RS 10,00</td>
-                    
+                    <td><% out.print(listaDeItens.get(i).getNome()); %></td>
+                    <td><% out.print(listaDeItens.get(i).getDescricao()); %></td>
+                    <td><% out.print(listaDeItens.get(i).getValor());%></td>
+                    <td> <input type="number" style="width: 50px" min="0" value="0" name="quantidade_<%= i%>"></td>
                 </tr>
-                
             </tbody>
         </table>
-
+        <%}
+            }%>
     </div>    
+    <div class="row" style="float: bottom">
+        <div class="col-sm-6">
+            <div>                                    
+                <button type="button" class="btn btn-warning" onclick="">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+          </form>
+    </div>  
+      
     <footer class="container-fluid text-center">
         &copy; Desenvolvido por Luciane Benetti e Marco Sena.  
     </footer>      
 </body>
+
 </html>
