@@ -4,24 +4,25 @@
     Author     : 80130917
 --%>
 
+<%@page import="controle.VO.Item"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="controle.VO.PedidoCompra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-     <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Mostrar Detalhes do Pedido</title>
     </head>
     <body>
-
+        <h4>Detalhes do Pedido</h4>
         <%
             Object pedidoUsuario = request.getAttribute("pedidoUsuario");
             Object valorTotal = request.getAttribute("valortotal");
             Object valorPedido = request.getAttribute("valorPedido");
-
+            Object quantidade = request.getAttribute("quantidade");
             if (pedidoUsuario != null) {
-                ArrayList<PedidoCompra> itemPedido = (ArrayList<PedidoCompra>) pedidoUsuario;
+                ArrayList<Item> itemPedido = (ArrayList<Item>) pedidoUsuario;
 
         %>   
 
@@ -36,14 +37,14 @@
             </thead>
             <tbody>
                 <%      for (int i = 0; i < itemPedido.size(); i++) {
-                        PedidoCompra pedidoCompra = itemPedido.get(i);
+                        Item pedidoCompra = itemPedido.get(i);
                 %>
                 <tr>
-                    <td><% out.print(pedidoCompra.getItensDePedido().getItem().getNome()); %></td>
-                    <td><% out.print(pedidoCompra.getItensDePedido().getItem().getDescricao()); %></td>
-                    <td><% out.print(pedidoCompra.getItensDePedido().getItem().getValor());%></td>
-                    <td><% out.print(pedidoCompra.getItensDePedido().getQuantidade()); %></td>
-                               
+                    <td><% out.print(pedidoCompra.getNome()); %></td>
+                    <td><% out.print(pedidoCompra.getDescricao()); %></td>
+                    <td><% out.print(pedidoCompra.getValor());%></td>
+                    <td><% out.print(quantidade);%></td>
+
                 </tr>
                 <%}%>
             <br />  
@@ -58,7 +59,7 @@
         <%}%>
     </section>
 
-    
+
 
 </body>
 </html>

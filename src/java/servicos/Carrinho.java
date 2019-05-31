@@ -20,7 +20,9 @@ public class Carrinho extends HttpServlet {
         ArrayList<Item> listaDeItens = new ArrayList<Item>();
         DAOItem DAOItem = new DAOItem();
         listaDeItens = DAOItem.pesquisarItem();
-        
+
+        HttpSession session = request.getSession();
+        session.setAttribute("listadeitens", listaDeItens);
         request.setAttribute("listadeitens", listaDeItens);
         request.getRequestDispatcher("WEB-INF/Carrinho.jsp").forward(request, response);
 

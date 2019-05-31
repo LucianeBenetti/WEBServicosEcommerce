@@ -22,39 +22,63 @@ public class Pedido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String pedido = request.getParameter("pedido");
+        Object listaItens = request.getSession().getAttribute("listadeitens");
         Double valorTotal = 0.0;
         Double valorPedido = 0.0;
-        if (pedido != null) {
-            ArrayList<PedidoCompra> pedidoUsuario = new ArrayList<PedidoCompra>();
+        if (listaItens != null) {
+
+            ArrayList<Item> item = (ArrayList<Item>) listaItens;
+            ArrayList<Item> pedidoUsuario = new ArrayList<Item>();
             DecimalFormat df = new DecimalFormat("0.00");
 
-            for (int i = 0; i < pedidoUsuario.size(); i++) {
+            for (int i = 0; i < item.size(); i++) {
 
-                int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
-                int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
-                int codigoItemPedido = pedidoUsuario.get(i).getItensDePedido().getCodigoItemPedido();
-                String nomeDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getNome();
-                Double valorDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getValor();
-                String detalheDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDetalhes();
-                String descricaoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDescricao();
+                int codigoDoItem = item.get(i).getCodigoItem();
+                String nomeDoItem = item.get(i).getNome();
+                Double valorDoItem = item.get(i).getValor();
+                String detalheDoItem = item.get(i).getDetalhes();
+                String descricaoDoItem = item.get(i).getDescricao();
                 String quantidade = request.getParameter("quantidade_" + i);
                 int qtidade = Integer.valueOf(quantidade);
-                Date dataPedido = null;
 
-                Item item = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
-                ItemPedido itemPedido = new ItemPedido(codigoItemPedido, qtidade, item);
-                PedidoCompra pedidoCompra = new PedidoCompra(codigoPedido, itemPedido, dataPedido);
-                pedidoUsuario.add(pedidoCompra);
+                Item itemPedido = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
+                pedidoUsuario.add(itemPedido);
 
                 valorPedido = valorDoItem * qtidade;
                 valorTotal += valorPedido;
+
+                System.out.println("item: " + item);
+                System.out.println("qtd: " + qtidade);
+
+                System.out.println("valorItem: " + valorPedido);
+                System.out.println("valorTotel  " + valorTotal);
+
+//                int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
+//                int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
+//                int codigoItemPedido = pedidoUsuario.get(i).getItensDePedido().getCodigoItemPedido();
+//                String nomeDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getNome();
+//                Double valorDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getValor();
+//                String detalheDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDetalhes();
+//                String descricaoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDescricao();
+//                String quantidade = request.getParameter("quantidade_" + i);
+//                int qtidade = Integer.valueOf(quantidade);
+//                Date dataPedido = null;
+//
+//                Item item = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
+//                ItemPedido itemPedido = new ItemPedido(codigoItemPedido, qtidade, item);
+//                PedidoCompra pedidoCompra = new PedidoCompra(codigoPedido, itemPedido, dataPedido);
+//                pedidoUsuario.add(pedidoCompra);
+//
+//                valorPedido = valorDoItem * qtidade;
+//                valorTotal += valorPedido;
+//            }
+                // HttpSession session = request.getSession();
+                // session.setAttribute("pedidoUsuario", pedidoUsuario);
+                request.setAttribute("quantidade", qtidade);
+                request.setAttribute("valortotal", df.format(valorTotal));
+                request.setAttribute("valorpedido", df.format(valorPedido));
+                request.setAttribute("pedidoUsuario", pedidoUsuario);
             }
-            HttpSession session = request.getSession();
-            session.setAttribute("pedidoUsuario", pedidoUsuario);
-            request.setAttribute("valortotal", df.format(valorTotal));
-            request.setAttribute("valorpedido", df.format(valorPedido));
-            request.setAttribute("pedidoUsuario", pedidoUsuario);
         }
         request.getRequestDispatcher("WEB-INF/MostrarPedido.jsp").forward(request, response);
 
