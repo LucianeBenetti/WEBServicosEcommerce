@@ -1,21 +1,27 @@
 package servicos;
 
+import controle.VO.Item;
+import controle.VO.ItemPedido;
+import controle.VO.PedidoCompra;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 public class Pedido extends HttpServlet {
 
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         Double valorTotal = 0.0;
         Double valorPedido = 0.0;
 
@@ -24,17 +30,23 @@ public class Pedido extends HttpServlet {
 
         for (int i = 0; i < pedidoUsuario.size(); i++) {
 
-            int codigoItem = pedidoUsuario.get(i).get;
-            String nome = pedidoUsuario.get(i).getNome();
-            Double valor = pedidoUsuario.get(i).getValor();
-            String detalhe = pedidoUsuario.get(i).getDetalhes();
-            String descricao = pedidoUsuario.get(i).getDescricao();
+            int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
+            int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
+            int codigoItemPedido = pedidoUsuario.get(i).getItensDePedido().getCodigoItemPedido();
+            String nomeDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getNome();
+            Double valorDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getValor();
+            String detalheDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDetalhes();
+            String descricaoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDescricao();
             String quantidade = request.getParameter("quantidade_" + i);
             int qtidade = Integer.valueOf(quantidade);
-            Item item = new Item(codigoItem, descricao, detalhe, nome, valor);
-            pedidoUsuario.add(item);
+            Date dataPedido = null;
 
-            valorPedido = valor * qtidade;
+            Item item = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
+            ItemPedido itemPedido = new ItemPedido(codigoItemPedido, qtidade, item);
+            PedidoCompra pedidoCompra = new PedidoCompra(codigoPedido, itemPedido, dataPedido);
+            pedidoUsuario.add(pedidoCompra);
+
+            valorPedido = valorDoItem * qtidade;
             valorTotal += valorPedido;
         }
         HttpSession session = request.getSession();
@@ -44,7 +56,7 @@ public class Pedido extends HttpServlet {
         request.setAttribute("pedidoUsuario", pedidoUsuario);
 
         request.getRequestDispatcher("pedidoCliente.jsp").forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,16 +5,16 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-class PedidoCompra {
+public class PedidoCompra {
 
     private int codigoPedido;
-    private ItemPedido[] itensDePedido;
+    private ItemPedido itensDePedido;
     private Date dataPedido;
 
     public PedidoCompra() {
     }
 
-    public PedidoCompra(int codigoPedido, ItemPedido[] itensDePedido, Date dataPedido) {
+    public PedidoCompra(int codigoPedido, ItemPedido itensDePedido, Date dataPedido) {
         this.codigoPedido = codigoPedido;
         this.itensDePedido = itensDePedido;
         this.dataPedido = dataPedido;
@@ -28,11 +28,11 @@ class PedidoCompra {
         this.codigoPedido = codigoPedido;
     }
 
-    public ItemPedido[] getItensDePedido() {
+    public ItemPedido getItensDePedido() {
         return itensDePedido;
     }
 
-    public void setItensDePedido(ItemPedido[] itensDePedido) {
+    public void setItensDePedido(ItemPedido itensDePedido) {
         this.itensDePedido = itensDePedido;
     }
 
