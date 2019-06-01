@@ -124,7 +124,7 @@
         </div>                        
 
         <%
-        } else if (descricaoProduto.equals("Violao")) {
+        } else if (descricaoProduto.equals(itens.get(i).getDescricao())) {
         %> 
 
         <div class="row">
