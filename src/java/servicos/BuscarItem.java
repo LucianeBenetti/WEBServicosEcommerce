@@ -13,7 +13,7 @@ public class BuscarItem extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String descricaoDoItem = request.getParameter("descricaodeproduto");
+        String descricaoDoItem = request.getParameter("descricaoproduto");
         System.out.print(descricaoDoItem);
     }
 

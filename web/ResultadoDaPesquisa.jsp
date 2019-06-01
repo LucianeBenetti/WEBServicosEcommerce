@@ -106,12 +106,12 @@
                     nome = itens.get(i).getNome();
                     valor = itens.get(i).getValor();
 
-                    if (descricaoProduto.equals("Bola de volei")) {
+                    if (descricaoProduto.equals(itens.get(i).getDescricao())) {
         %>                          
         <div class="row">
             <div class="col-sm-6">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Bola de vôlei Mikasena</div>
+                    <div class="panel-heading">Bola de volei Mikasena</div>
                     <div class="panel-body"><img src="bolapraia.jpg" class="img-responsive" style="width:58%" alt="Bola de vôlei de praia"></div>
                     <div class="panel-footer">A melhor bola de vôlei de praia! Só R$ 3,00.</div>
                 </div>
@@ -130,7 +130,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="panel panel-danger">
-                    <div class="panel-heading">Violão Takasena.</div>
+                    <div class="panel-heading">Violão Takasena corda de Lynon!</div>
                     <div class="panel-body"><img src="takamine.jpg" class="img-responsive" style="width:100%" alt="Violão Takamine"></div>
                     <div class="panel-footer">Violão Takasena corda de Lynon! Só R$ 15,00.</div>
                 </div>
