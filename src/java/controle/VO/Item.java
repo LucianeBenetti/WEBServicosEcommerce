@@ -1,6 +1,5 @@
 package controle.VO;
 
-import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement

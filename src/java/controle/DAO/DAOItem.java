@@ -9,15 +9,17 @@ import java.util.ArrayList;
 
 public class DAOItem {
 
-    public ArrayList<Item> pesquisarItem(String descProduto) {
+    public ArrayList<Item> pesquisarItem(String descricaoProduto) {
 
-        String query = "SELECT *from item " + " where descricao like ? ";
+        String query = "SELECT * from item where descricao like ? ";
+        
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
-        Item item = null;
-        ArrayList<Item> itens = new ArrayList<Item>();
+        Item item = null;        
+        ArrayList<Item> itens = new ArrayList<>();
+        
         try {
-            prepStmt.setString(1, '%' + descProduto + '%');
+            prepStmt.setString(1, '%' + descricaoProduto + '%');
             ResultSet result = prepStmt.executeQuery();
             while (result.next()) {
                 item = new Item();
@@ -39,11 +41,11 @@ public class DAOItem {
     }
 
     public ArrayList<Item> pesquisarItem() {
-        String query = "SELECT *from item ";
+        String query = "SELECT * from item ";
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
         Item item = null;
-        ArrayList<Item> itens = new ArrayList<Item>();
+        ArrayList<Item> itens = new ArrayList<>();
         try {
             ResultSet result = prepStmt.executeQuery();
             while (result.next()) {

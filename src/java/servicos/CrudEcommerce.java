@@ -102,7 +102,7 @@ public class CrudEcommerce extends HttpServlet {
 
                         if (item != null) {
 
-                            System.out.println(item);
+                       //     System.out.println(item);
 
                         }
 

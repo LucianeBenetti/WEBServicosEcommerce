@@ -1,8 +1,3 @@
-<%-- 
-    Document   : ResultadoDaPesquisa
-    Created on : 28/05/2019, 15:31:04
-    Author     : 80119050
---%>
 
 <%@page import="controle.VO.Item"%>
 <%@page import="java.util.ArrayList"%>
@@ -93,27 +88,28 @@
 
         <%
 
-            Object obj = request.getAttribute("itensenccontrados");
+            Object obj = request.getAttribute("itensencontrados");
 
             String descricaoProduto = null;
             String nome = null;
             Double valor = 0.0;
 
             if (obj != null) {
-                ArrayList<Item> itens = (ArrayList<Item>) obj;
-                for (int i = 0; i < itens.size(); i++) {
-                    descricaoProduto = itens.get(i).getDescricao();
-                    nome = itens.get(i).getNome();
-                    valor = itens.get(i).getValor();
+                ArrayList<Item> itensEncontrados = (ArrayList<Item>) obj;
+                for (int i = 0; i < itensEncontrados.size(); i++) {
+                    descricaoProduto = itensEncontrados.get(i).getDescricao();
+                    nome = itensEncontrados.get(i).getNome();
+                    valor = itensEncontrados.get(i).getValor();
 
-                    if (descricaoProduto.equals(itens.get(i).getDescricao())) {
+                    if (descricaoProduto.equals(itensEncontrados.get(i).getDescricao())) {
+
         %>                          
         <div class="row">
             <div class="col-sm-6">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Bola de volei Mikasena</div>
-                    <div class="panel-body"><img src="bolapraia.jpg" class="img-responsive" style="width:58%" alt="Bola de vôlei de praia"></div>
-                    <div class="panel-footer">A melhor bola de vôlei de praia! Só R$ 3,00.</div>
+                    <div class="panel-heading"><%= nome%></div>
+                    <div class="panel-body"><%= descricaoProduto%></div>
+                    <div class="panel-footer"><%= valor%></div>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -124,31 +120,14 @@
         </div>                        
 
         <%
-        } else if (descricaoProduto.equals(itens.get(i).getDescricao())) {
+                    } else {
+                        out.println("Item não encontrado!");
+                    }
+
+                }
+            }
         %> 
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">Violão Takasena corda de Lynon!</div>
-                    <div class="panel-body"><img src="takamine.jpg" class="img-responsive" style="width:100%" alt="Violão Takamine"></div>
-                    <div class="panel-footer">Violão Takasena corda de Lynon! Só R$ 15,00.</div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div>                                    
-                    <button type="button" class="btn btn-warning btn-block" onclick="adicionarAoCarro()">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-        </div>
-
-        <%
-                    }
-                }
-
-            }
-
-        %>
     </div>
     <footer class="container-fluid text-center">
         &copy; Desenvolvido por Luciane Benetti e Marco Sena.  

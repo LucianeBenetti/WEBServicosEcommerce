@@ -52,21 +52,21 @@
                 Object obj = request.getAttribute("listadeitens");
                 ArrayList<Item> listaDeItens = (ArrayList<Item>) obj;
 
-                if (listaDeItens != null) {
-
+                if (listaDeItens != null) {%>
+                    
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Qntde</th>
+                        </tr>
+                    </thead>
+                <%
                     for (int i = 0; i < listaDeItens.size(); i++) {
 
-            %>   
-
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Preço</th>
-                        <th>Qntde</th>
-                    </tr>
-                </thead>
+            %>            
                 <tbody>
                     <tr>
                         <td><% out.print(listaDeItens.get(i).getNome()); %></td>
@@ -74,15 +74,19 @@
                         <td><% out.print(listaDeItens.get(i).getValor());%></td>
                         <td> <input type="number" style="width: 50px" min="0" value="0" name="quantidade_<%= i%>"></td>
                     </tr>
+                
+            <%}%>
+
                 </tbody>
             </table>
-            <%}
-            }%>
+            
+            <%}%>
         </div>    
+        
         <div class="row" style="float: bottom">
             <div class="col-sm-6">
                 <div>                                    
-                    <button type="button" name="pedido" class="btn btn-warning" onclick="">Adicionar ao Carrinho</button>
+                    <button type="submit" name="pedido" class="btn btn-warning">Adicionar ao Carrinho</button>
                 </div>
             </div>
 

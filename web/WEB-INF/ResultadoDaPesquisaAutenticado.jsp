@@ -87,7 +87,7 @@
 
         <%
 
-            Object obj = request.getAttribute("itensenccontrados");
+            Object obj = request.getAttribute("itensencontrados");
 
             String descricaoProduto = null;
             String nome = null;
@@ -95,12 +95,13 @@
 
             if (obj != null) {
                 ArrayList<Item> itens = (ArrayList<Item>) obj;
+                
                 for (int i = 0; i < itens.size(); i++) {
                     descricaoProduto = itens.get(i).getDescricao();
                     nome = itens.get(i).getNome();
                     valor = itens.get(i).getValor();
 
-                    if (descricaoProduto.equals("Bola de volei")) {
+                    if (descricaoProduto.equals(itens.get(i).getDescricao())) {
         %>                          
         <div class="row">
             <div class="col-sm-6">

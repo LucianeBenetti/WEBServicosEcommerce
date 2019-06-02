@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controle.integracao;
 
 import com.google.gson.Gson;
@@ -11,10 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import controle.VO.Item;
 import java.util.ArrayList;
 
-/**
- *
- * @author 80119050
- */
 public class ItemDAOJSON {
     
     
@@ -28,9 +20,9 @@ public class ItemDAOJSON {
         return listaDeItensFromJSON;
     }
 
-    public String serializa(ArrayList<Item> listaDeItens) {
+    public String serializa(ArrayList<Item> itensEncontrados) {
         Gson gson = new GsonBuilder().create();
-        String json = gson.toJson(listaDeItens);
+        String json = gson.toJson(itensEncontrados);
         return json;
     }
 }

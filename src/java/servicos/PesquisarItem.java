@@ -6,31 +6,29 @@ import controle.integracao.ItemDAOJSON;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServicoItem extends HttpServlet {
+public class PesquisarItem extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String descProduto = request.getParameter("descricaoproduto");
+        String descricaoProduto = request.getParameter("descricaoproduto");
         Item item = null;
         DAOItem itemDAO = new DAOItem();
-        ArrayList<Item> itensPesquisados = new ArrayList<Item>();
-        itensPesquisados = itemDAO.pesquisarItem(descProduto);
+        ArrayList<Item> itensEncontrados = new ArrayList<Item>();
+        itensEncontrados = itemDAO.pesquisarItem(descricaoProduto);
         String itemJSON = null;
 
-        if (itensPesquisados != null) {
+        if (itensEncontrados != null) {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
-            itemJSON = itemDAOJSON.serializa(itensPesquisados);
-
-            PrintWriter out = response.getWriter();
-            //  out.print(itemJSON);
+            itemJSON = itemDAOJSON.serializa(itensEncontrados);
+            
+            //System.out.println("O item JSON é: " +itemJSON);            
 
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
@@ -39,10 +37,11 @@ public class ServicoItem extends HttpServlet {
         if (itemJSON != null) {
 
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
-            itensPesquisados = itemDAOJSON.desserializa(itemJSON);
-            PrintWriter out = response.getWriter();
-            // out.print(itensPesquisados);
-            request.setAttribute("itensenccontrados", itensPesquisados);
+            itensEncontrados = itemDAOJSON.desserializa(itemJSON);
+            
+            //System.out.println("Os itens encontrados são: " +itensEncontrados);
+            
+            request.setAttribute("itensencontrados", itensEncontrados);
 
             String page = (String) request.getSession().getAttribute("usuarioautenticado") == null? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
                 request.getRequestDispatcher(page).forward(request, response);

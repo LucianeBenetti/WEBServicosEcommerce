@@ -1,8 +1,3 @@
-<%-- 
-    Document   : MarLuEcommerce
-    Created on : 20/05/2019, 13:10:33
-    Author     : 80119050
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,13 +44,13 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container text-center">
   
     <h4>Digital LuMar - Confira abaixo os produtos oferecidos pela melhor loja da Internet, 
         ou pesquise por um produto específico</h4>
-      <form action="servicoitem" method="get">
+      <form action="pesquisaritem" method="get">
         Pesquise aqui:
-        <input type="text"  size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
+        <input type="text" size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
         <input class="btn btn-info" type="submit"  value="Pesquisar!"><br><br>
     
     </form>

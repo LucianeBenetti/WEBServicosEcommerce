@@ -28,23 +28,25 @@ public class Pedido extends HttpServlet {
         
         if (listaItens != null) {
 
-            ArrayList<Item> item = (ArrayList<Item>) listaItens;
+            ArrayList<Item> itens = (ArrayList<Item>) listaItens;
             
-            ArrayList<Item> pedidoUsuario = new ArrayList<Item>();
+            ArrayList<Item> pedidoCompra = new ArrayList<Item>();
             DecimalFormat df = new DecimalFormat("0.00");
 
-            for (int i = 0; i < item.size(); i++) {
+            for (int i = 0; i < itens.size(); i++) {
 
-                int codigoDoItem = item.get(i).getCodigoItem();
-                String nomeDoItem = item.get(i).getNome();
-                Double valorDoItem = item.get(i).getValor();
-                String detalheDoItem = item.get(i).getDetalhes();
-                String descricaoDoItem = item.get(i).getDescricao();
+                int codigoDoItem = itens.get(i).getCodigoItem();
+                
+                String descricaoDoItem = itens.get(i).getDescricao();
+                String detalheDoItem = itens.get(i).getDetalhes();
+                String nomeDoItem = itens.get(i).getNome();
+                Double valorDoItem = itens.get(i).getValor();
+                
                 String quantidade = request.getParameter("quantidade_" + i);
                 int qtidade = Integer.valueOf(quantidade);
 
-                Item itemPedido = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
-                pedidoUsuario.add(itemPedido);
+                Item item = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
+                pedidoCompra.add(item);
 
                 valorPorItem = valorDoItem * qtidade;
                 valorTotal += valorPorItem;
@@ -74,8 +76,8 @@ public class Pedido extends HttpServlet {
                 // session.setAttribute("pedidoUsuario", pedidoUsuario);
                 request.setAttribute("quantidade", qtidade);
                 request.setAttribute("valortotal", df.format(valorTotal));
-                request.setAttribute("pedidoUsuario", pedidoUsuario);
-            }
+                request.setAttribute("pedidocompra", pedidoCompra);
+               }
         }
         request.getRequestDispatcher("WEB-INF/MostrarPedido.jsp").forward(request, response);
 
