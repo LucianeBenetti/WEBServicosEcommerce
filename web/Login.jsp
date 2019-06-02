@@ -1,8 +1,3 @@
-<%-- 
-    Document   : Login
-    Created on : 20/05/2019, 13:31:57
-    Author     : 80119050
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,17 +12,16 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
      
 </head>
-
 <body>
-
+    
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
      
 </nav>
 
-
     <div class="container">
         <h2>Loja Digital LuMar!</h2>
         <p> Entre com o login e senha para comprar à vontade!</P>
+        
         <form class="was-validated" action="crudecommerce" method="post">
             <div class="form-group">
                 <label for="nome">Login:</label>
@@ -44,7 +38,7 @@
 
             </div>
             <input type="hidden" id="validar" name="validar" value="validar">
-            <button type="submit" class="btn btn-primary">Acessar</button>
+            <button type="submit" class="btn btn-primary">Acessar Loja</button>
             
             <div class="form-group form-check" style =" float: top">
                 <label class="form-check-label">
@@ -53,6 +47,7 @@
             </div> <br>           
             
         </form>
+        
         <form class="form-group" action="CadastrarUsuario.jsp" method="post">
             Não sou cadastrado <input type="submit" class="btn btn-primary" value = "Clique aqui!">
         </form>

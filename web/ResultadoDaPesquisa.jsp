@@ -17,7 +17,7 @@
         }
 
         function adicionarAoCarro() {
-            alert("Para adiconar um item ao Carrinho, você precisa fazer login! Para isso, clique no botão 'Fazer Login' à direita da tela!");
+            alert("Para adiconar um item ao Carrinho, você precisa fazer login! Para isso, clique no botão 'Fazer Login!'");
         }
     </script>
 
@@ -50,7 +50,7 @@
 
         <h4>Digital LuMar - Confira abaixo os produtos oferecidos pela melhor loja da Internet, 
             ou pesquise por um produto específico</h4>
-        <form action="servicoitem" method="get">
+        <form action="pesquisaritem" method="get">
             Pesquise aqui:
             <input type="text"  size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
             <input type="submit"  value="Pesquisar!"><br><br>
@@ -78,7 +78,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="Login.jsp"><span class="glyphicon glyphicon-user"></span> Fazer Login</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+                    <li><a href="#" onclick="adicionarAoCarro()"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
                 </ul>
             </div>
         </div>
@@ -109,7 +109,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><%= nome%></div>
                     <div class="panel-body"><%= descricaoProduto%></div>
-                    <div class="panel-footer"><%= valor%></div>
+                    <div class="panel-footer"><%out.println("R$ " +valor);%></div>
                 </div>
             </div>
             <div class="col-sm-6">

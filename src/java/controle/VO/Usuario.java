@@ -12,12 +12,12 @@ public class Usuario {
     private String login;
     private int numeroCartao;
     private String senha;
-    private PedidoCompra [] pedidosDeCompra;
+    private PedidoCompra pedidosDeCompra;
 
     public Usuario() {
     }
 
-    public Usuario(int codigoUsuario, String codigoSeguranca, Date dataValidade, String login, int numeroCartao, String senha, PedidoCompra[] pedidosDeCompra) {
+    public Usuario(int codigoUsuario, String codigoSeguranca, Date dataValidade, String login, int numeroCartao, String senha, PedidoCompra pedidosDeCompra) {
         this.codigoUsuario = codigoUsuario;
         this.codigoSeguranca = codigoSeguranca;
         this.dataValidade = dataValidade;
@@ -75,11 +75,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public PedidoCompra[] getPedidosDeCompra() {
+    public PedidoCompra getPedidosDeCompra() {
         return pedidosDeCompra;
     }
 
-    public void setPedidosDeCompra(PedidoCompra[] pedidosDeCompra) {
+    public void setPedidosDeCompra(PedidoCompra pedidosDeCompra) {
         this.pedidosDeCompra = pedidosDeCompra;
     }
 

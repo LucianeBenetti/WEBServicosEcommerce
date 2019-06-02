@@ -1,18 +1,14 @@
 package controle.DAO;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import controle.VO.Item;
+import controle.VO.PedidoCompra;
 import controle.VO.Usuario;
-import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 
 public class UsuarioDao {
 
@@ -68,6 +64,9 @@ public class UsuarioDao {
                 usuario = new Usuario();
 
                 usuario.setCodigoUsuario(resultado.getInt("codigoUsuario"));
+                PedidoCompra pedidoCompra = new PedidoCompra();
+                pedidoCompra.setCodigoPedido(resultado.getInt(2));
+                usuario.setPedidosDeCompra(pedidoCompra);
                 usuario.setCodigoSeguranca(resultado.getString("codigoSeguranca"));
                 usuario.setDataValidade(resultado.getDate(3));
                 usuario.setLogin(resultado.getString("login"));
@@ -77,7 +76,7 @@ public class UsuarioDao {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao executar a Query de Consulta de funcionarios!Causa: \n: " + e.getMessage());
+            System.out.println("Erro ao executar a Query de validação de Usuário!Causa: \n: " + e.getMessage());
         } finally {
             ConexaoComBanco.closeStatement(conn);
             ConexaoComBanco.closeConnection(conn);

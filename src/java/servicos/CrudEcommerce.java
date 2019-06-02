@@ -4,7 +4,6 @@ import controle.BO.UsuarioBo;
 import controle.VO.Item;
 import controle.VO.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +20,7 @@ public class CrudEcommerce extends HttpServlet {
         String var1 = request.getParameter("cadastrar");
         String var2 = request.getParameter("validar");
         String descricao = request.getParameter("descricao");
-
-        //System.out.println("O cpf é: " + cpf);
+        
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
@@ -33,14 +31,12 @@ public class CrudEcommerce extends HttpServlet {
         UsuarioBo usuarioBo = null;
 
         for (int i = 0; i < variavel.size(); i++) {
-
             String var = variavel.get(i);
 
             if (var != null) {
                 switch (var) {
                     case "cadastrar":
 
-                        //   System.out.println("A variável é: " + variavel.get(i));
                         usuario = new Usuario();
                         usuario.setLogin(request.getParameter("login"));
                         usuario.setSenha(request.getParameter("senha"));
@@ -59,11 +55,9 @@ public class CrudEcommerce extends HttpServlet {
                             System.out.println("O novo Id é: " + novoId);
 
                         } else {
-
                             System.out.println("Já existe um usuário com o mesmo nome e/ou senha. Tente outro nome!");
 
                         }
-
                         break;
 
                     case "validar":
@@ -72,15 +66,18 @@ public class CrudEcommerce extends HttpServlet {
                         usuario.setLogin(request.getParameter("login"));
                         usuario.setSenha(request.getParameter("senha"));
                         usuarioBo = new UsuarioBo();
-                        Usuario usuarioValidado = usuarioBo.validarUsuario(usuario);
-
-                        System.out.println("O usuário é: " + usuarioValidado);
+                        Usuario usuarioValidado = usuarioBo.validarUsuario(usuario);                        
+                        
                         if (usuarioValidado != null) {
+                            
+                            System.out.println("O usuário é: " + usuarioValidado);
+                            
                             HttpSession session = request.getSession();
                             
                             request.setAttribute("login", usuario.getLogin());
                             request.setAttribute("senha", usuario.getSenha());
-                            session.setAttribute("usuarioautenticado", usuario.getLogin());                            
+                            session.setAttribute("usuarioautenticado", usuario.getLogin());
+                            //request.setAttribute("usuarioautenticado", usuario.getLogin());
                             
                             request.getRequestDispatcher("WEB-INF/EcommerceValidado.jsp").forward(request, response);
 
@@ -93,19 +90,15 @@ public class CrudEcommerce extends HttpServlet {
                         break;
 
                     case "pesquisar":
-
                         item = new Item();
 
                         usuarioBo = new UsuarioBo();
-
                         item = usuarioBo.pesquisarItem(descricao);
 
                         if (item != null) {
-
                        //     System.out.println(item);
 
                         }
-
                         break;
 
                     default:
@@ -113,13 +106,9 @@ public class CrudEcommerce extends HttpServlet {
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
 
                         break;
-
                 }
-
             }
-
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

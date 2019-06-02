@@ -5,7 +5,6 @@ import controle.DAO.UsuarioDao;
 import controle.VO.Usuario;
 import controle.integracao.UsuarioDAOJSON;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

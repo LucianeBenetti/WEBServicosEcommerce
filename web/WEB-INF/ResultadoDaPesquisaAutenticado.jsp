@@ -49,7 +49,7 @@
 
         <h4>Digital LuMar - Confira abaixo os produtos oferecidos pela melhor loja da Internet, 
             ou pesquise por um produto específico</h4>
-        <form action="servicoitem" method="get">
+        <form action="pesquisaritem" method="get">
             Pesquise aqui:
             <input type="text"  size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
             <input type="submit"  value="Pesquisar!"><br><br>
@@ -94,56 +94,39 @@
             Double valor = 0.0;
 
             if (obj != null) {
-                ArrayList<Item> itens = (ArrayList<Item>) obj;
-                
-                for (int i = 0; i < itens.size(); i++) {
-                    descricaoProduto = itens.get(i).getDescricao();
-                    nome = itens.get(i).getNome();
-                    valor = itens.get(i).getValor();
+                ArrayList<Item> itensEncontrados = (ArrayList<Item>) obj;
+                for (int i = 0; i < itensEncontrados.size(); i++) {
+                    descricaoProduto = itensEncontrados.get(i).getDescricao();
+                    nome = itensEncontrados.get(i).getNome();
+                    valor = itensEncontrados.get(i).getValor();
 
-                    if (descricaoProduto.equals(itens.get(i).getDescricao())) {
+                    if (descricaoProduto.equals(itensEncontrados.get(i).getDescricao())) {
+
         %>                          
         <div class="row">
             <div class="col-sm-6">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Bola de vôlei Mikasena</div>
-                    <div class="panel-body"><img src="bolapraia.jpg" class="img-responsive" style="width:58%" alt="Bola de vôlei de praia"></div>
-                    <div class="panel-footer">A melhor bola de vôlei de praia! Só R$ 3,00.</div>
+                    <div class="panel-heading"><%= nome%></div>
+                    <div class="panel-body"><%= descricaoProduto%></div>
+                    <div class="panel-footer"><%out.println("R$ " +valor);%></div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div>                                    
-                    <button type="button" class="btn btn-warning btn-block">Adicionar ao Carrinho</button>
+                    <button type="button" class="btn btn-warning btn-block" onclick="adicionarAoCarro()">Adicionar ao Carrinho</button>
                 </div>
             </div>
         </div>                        
 
         <%
-        } else if (descricaoProduto.equals("Violao")) {
+                    } else {
+                        out.println("Item não encontrado!");
+                    }
+
+                }
+            }
         %> 
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">Violão Takasena.</div>
-                    <div class="panel-body"><img src="takamine.jpg" class="img-responsive" style="width:100%" alt="Violão Takamine"></div>
-                    <div class="panel-footer">Violão Takasena corda de Lynon! Só R$ 15,00.</div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div>                                    
-                    <button type="button" class="btn btn-warning btn-block">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-        </div>
-
-        <%
-                    }
-                }
-
-            }
-
-        %>
     </div>
     <footer class="container-fluid text-center">
         &copy; Desenvolvido por Luciane Benetti e Marco Sena.  
