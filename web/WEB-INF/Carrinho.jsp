@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Carrinho
-    Created on : 30/05/2019, 15:11:37
-    Author     : 80119050
---%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="controle.VO.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,10 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script>
-
-    </script>
-
+    
     <style>
         /* Remove the navbar's default rounded borders and increase the bottom margin */ 
         .navbar {
@@ -44,9 +35,9 @@
     </style>
 </head>
 <body>
-    <form action="pedido" method="POST">
+    <form action="pedido" method="get">
         <div class="container">
-            <h2>Itens adicionados ao Carrinho!</h2>
+            <h2>Selecione os Itens a serem adicionados ao Carrinho!</h2>
 
             <%
                 Object obj = request.getAttribute("listadeitens");
@@ -71,7 +62,7 @@
                     <tr>
                         <td><% out.print(listaDeItens.get(i).getNome()); %></td>
                         <td><% out.print(listaDeItens.get(i).getDescricao()); %></td>
-                        <td><% out.print(listaDeItens.get(i).getValor());%></td>
+                        <td><% out.print("R$ " +listaDeItens.get(i).getValor());%></td>
                         <td> <input type="number" style="width: 50px" min="0" value="0" name="quantidade_<%= i%>"></td>
                     </tr>
                 
@@ -83,15 +74,15 @@
             <%}%>
         </div>    
         
-        <div class="row" style="float: bottom">
+        <div class="row" style="float: right; margin-left: 15%; margin-right: 10%">
             <div class="col-sm-6">
-                <div>                                    
-                    <button type="submit" name="pedido" class="btn btn-warning">Adicionar ao Carrinho</button>
-                </div>
+                <input  type="submit" class="btn btn-warning" value="Adicionar ao Carrinho">
+               
             </div>
 
         </div>  
     </form>
+        
     <footer class="container-fluid text-center">
         &copy; Desenvolvido por Luciane Benetti e Marco Sena.  
     </footer>      

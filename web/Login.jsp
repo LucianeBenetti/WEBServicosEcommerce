@@ -25,13 +25,13 @@
         <form class="was-validated" action="crudecommerce" method="post">
             <div class="form-group">
                 <label for="nome">Login:</label>
-                <input type="text" class="form-control" id="login" placeholder="Digite seu login" name="login" required>
+                <input type="text" name="login" class="form-control" id="login" placeholder="Digite seu login" required>
                 <div class="valid-feedback">Campo preenchido. Ok!</div>
                 <div class="invalid-feedback">Esse campo é obrigatório.</div>
             </div>
             <div class="form-group">
                 <label for="pwd">Senha:</label>
-                <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" name="senha" required>
+                <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite sua senha" required>
                 <div class="valid-feedback">Campo preenchido. Ok!</div>
                 <div class="invalid-feedback">Esse campo é obrigatório.</div>
                 <small id="senha" class="form-text text-muted">Nunca compartilhe a sua senha!</small>

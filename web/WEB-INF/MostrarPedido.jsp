@@ -19,12 +19,11 @@
         <%
             Object pedidoUsuario = request.getAttribute("pedidocompra");
             Object valorTotal = request.getAttribute("valortotal");
-            Object quantidade = request.getAttribute("quantidade");
-           
+            Object quantidades = request.getAttribute("quantidades");           
             
-            out.print(quantidade);
             if (pedidoUsuario != null) {
                 ArrayList<Item> itemPedido = (ArrayList<Item>) pedidoUsuario;
+                ArrayList <Integer> qtidades =  (ArrayList <Integer>) quantidades;
 
         %>   
 
@@ -33,7 +32,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>Descrição</th>
-                    <th>Preço</th>
+                    <th>Preço do Item</th>
                     <th>Qntde</th>
                 </tr>
             </thead>
@@ -44,7 +43,7 @@
                 <td><% out.print(pedidoItem.getNome()); %></td>
                 <td><% out.print(pedidoItem.getDescricao()); %></td>
                 <td><% out.print(pedidoItem.getValor());%></td>
-                <td><%=quantidade%></td>
+                <td><%=qtidades.get(i)%></td>
             </tr>
             <%}%>
 

@@ -19,13 +19,20 @@ public class Carrinho extends HttpServlet {
 
         ArrayList<Item> listaDeItens = new ArrayList<Item>();
         DAOItem DAOItem = new DAOItem();
-        listaDeItens = DAOItem.pesquisarItem();
-
+        listaDeItens = DAOItem.buscarItensParaAdiconarAoCarrinho();
+        
+        if(listaDeItens != null){
         HttpSession session = request.getSession();
         session.setAttribute("listadeitens", listaDeItens);
         
         request.setAttribute("listadeitens", listaDeItens);
         request.getRequestDispatcher("WEB-INF/Carrinho.jsp").forward(request, response);
+        
+        } else {
+            PrintWriter out = response.getWriter();
+            out.println("Não foi possível listar os Itens para montar o Carrinho de Compras!");
+        
+        }
 
     }
 

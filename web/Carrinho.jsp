@@ -47,7 +47,7 @@
 
 
     <div class="container">
-        <h2>Itens adicionados ao Carrinho!</h2>
+        <h2>Selecione os Itens a serem adicionados ao Carrinho!</h2>
 
         <%
             Object obj = request.getAttribute("listadeitens");

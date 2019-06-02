@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ResultadoDaPesquisaAutenticado
-    Created on : 30/05/2019, 14:56:07
-    Author     : 80119050
---%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="controle.VO.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

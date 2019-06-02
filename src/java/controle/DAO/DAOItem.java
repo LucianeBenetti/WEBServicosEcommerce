@@ -40,11 +40,13 @@ public class DAOItem {
 
     }
 
-    public ArrayList<Item> pesquisarItem() {
+    public ArrayList<Item> buscarItensParaAdiconarAoCarrinho() {
         String query = "SELECT * from item ";
+        
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
         Item item = null;
+        
         ArrayList<Item> itens = new ArrayList<>();
         try {
             ResultSet result = prepStmt.executeQuery();
@@ -64,7 +66,6 @@ public class DAOItem {
             ConexaoComBanco.closeConnection(conn);
         }
         return itens;
-
     }
 }
 

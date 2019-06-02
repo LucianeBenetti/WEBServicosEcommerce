@@ -1,8 +1,3 @@
-<%-- 
-    Document   : EcommerceValidado
-    Created on : 21/05/2019, 14:17:25
-    Author     : 80119050
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -69,7 +64,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="Login.jsp"><span class="glyphicon glyphicon-user"></span> Fazer Login</a></li>
-                        <li><a href="carrinho"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+                        <li><a href="carrinho"><span class="glyphicon glyphicon-shopping-cart"></span>Carrinho</a></li>
                     </ul>
                 </div>
             </div>
