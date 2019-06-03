@@ -11,19 +11,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mostrar Detalhes do Pedido</title>
+        <title>LuMar</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script>
+
+        </script>
+
+        <style>
+            /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+            .navbar {
+                margin-bottom: 10px;
+                border-radius: 0;
+                padding:0px;
+            }
+
+            /* Remove the jumbotron's default bottom margin */ 
+            .jumbotron {
+                margin-bottom: 0;
+                padding: 0px;
+            }
+
+            /* Add a gray background color and some padding to the footer */
+            footer {
+                background-color: #f2f2f2;
+                color: red;
+                padding: 5px;
+                margin-top: 35%;
+            }
+        </style>
     </head>
     <body>
-        <h4>Detalhes do Pedido</h4>
+        <h2>Detalhes do Pedido</h2>
         <%
             Object pedidoUsuario = request.getAttribute("pedidocompra");
             Object valorTotal = request.getAttribute("valortotal");
-            Object quantidades = request.getAttribute("quantidades");           
-            
+            Object quantidades = request.getAttribute("quantidades");
+
             if (pedidoUsuario != null) {
                 ArrayList<Item> itemPedido = (ArrayList<Item>) pedidoUsuario;
-                ArrayList <Integer> qtidades =  (ArrayList <Integer>) quantidades;
+                ArrayList<Integer> qtidades = (ArrayList<Integer>) quantidades;
 
         %>   
 
@@ -38,6 +69,7 @@
             </thead>
             <%      for (int i = 0; i < itemPedido.size(); i++) {
                     Item pedidoItem = itemPedido.get(i);
+                    if (qtidades.get(i) > 0) {
             %>
             <tr>
                 <td><% out.print(pedidoItem.getNome()); %></td>
@@ -45,7 +77,9 @@
                 <td><% out.print(pedidoItem.getValor());%></td>
                 <td><%=qtidades.get(i)%></td>
             </tr>
-            <%}%>
+            <%}
+                           } 
+            %>
 
             <br />  
 
