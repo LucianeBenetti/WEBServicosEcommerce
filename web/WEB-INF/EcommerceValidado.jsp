@@ -63,8 +63,10 @@
                         <li><a href="#">Contato</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><input class="btn" style="margin: 14px 0px 10px 10px; padding: 0px;"  size="10" type="text" value="<%out.println("Olá " +request.getAttribute("login") +"!");%>"></li>
                         <li><a href="Login.jsp"><span class="glyphicon glyphicon-user"></span> Fazer Login</a></li>
                         <li><a href="carrinho"><span class="glyphicon glyphicon-shopping-cart"></span>Carrinho</a></li>
+                        <li><a href="#"><i class='fas fa-sign-out-alt' style='font-size:24px'></i>Sair</a></li>
                     </ul>
                 </div>
             </div>
