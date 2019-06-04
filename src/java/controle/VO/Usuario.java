@@ -11,19 +11,17 @@ public class Usuario {
     private String login;
     private int numeroCartao;
     private String senha;
-    private PedidoCompra pedidosDeCompra;
 
     public Usuario() {
     }
 
-    public Usuario(int codigoUsuario, String codigoSeguranca, Date dataValidade, String login, int numeroCartao, String senha, PedidoCompra pedidosDeCompra) {
+    public Usuario(int codigoUsuario, String codigoSeguranca, Date dataValidade, String login, int numeroCartao, String senha) {
         this.codigoUsuario = codigoUsuario;
         this.codigoSeguranca = codigoSeguranca;
         this.dataValidade = dataValidade;
         this.login = login;
         this.numeroCartao = numeroCartao;
         this.senha = senha;
-        this.pedidosDeCompra = pedidosDeCompra;
     }
 
     public int getCodigoUsuario() {
@@ -74,18 +72,10 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public PedidoCompra getPedidosDeCompra() {
-        return pedidosDeCompra;
-    }
-
-    public void setPedidosDeCompra(PedidoCompra pedidosDeCompra) {
-        this.pedidosDeCompra = pedidosDeCompra;
-    }
-
     @Override
     public String toString() {
-        return "Usuario{" + "codigoUsuario=" + codigoUsuario + ", codigoSeguranca=" + codigoSeguranca + ", dataValidade=" + dataValidade + ", login=" + login + ", numeroCartao=" + numeroCartao + ", senha=" + senha + ", pedidosDeCompra=" + pedidosDeCompra + '}';
+        return "Usuario{" + "codigoUsuario=" + codigoUsuario + ", codigoSeguranca=" + codigoSeguranca + ", dataValidade=" + dataValidade + ", login=" + login + ", numeroCartao=" + numeroCartao + ", senha=" + senha + '}';
     }
-
-   
+  
+    
 }

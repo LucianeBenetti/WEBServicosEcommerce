@@ -63,14 +63,11 @@ public class UsuarioDao {
                 usuario = new Usuario();
 
                 usuario.setCodigoUsuario(resultado.getInt(1));
-                PedidoCompra pedidoCompra = new PedidoCompra();
-                pedidoCompra.setCodigoPedido(resultado.getInt(2));
-                usuario.setPedidosDeCompra(pedidoCompra);
-                usuario.setCodigoSeguranca(resultado.getString(3));
-                usuario.setDataValidade(resultado.getDate(4));
-                usuario.setLogin(resultado.getString(5));
-                usuario.setNumeroCartao(resultado.getInt(6));
-                usuario.setSenha(resultado.getString(7));
+                usuario.setCodigoSeguranca(resultado.getString(2));
+                usuario.setDataValidade(resultado.getDate(3));
+                usuario.setLogin(resultado.getString(4));
+                usuario.setNumeroCartao(resultado.getInt(5));
+                usuario.setSenha(resultado.getString(6));
             }
 
         } catch (SQLException e) {
@@ -134,16 +131,11 @@ public class UsuarioDao {
                 usuario = new Usuario();
 
                 usuario.setCodigoUsuario(resultado.getInt(1));
-
-                PedidoCompra pedidoDeCompra = new PedidoCompra();
-                pedidoDeCompra.setCodigoPedido(resultado.getInt(2));
-
-                usuario.setPedidosDeCompra(pedidoDeCompra);
-                usuario.setCodigoSeguranca(resultado.getString(3));
-                usuario.setDataValidade(resultado.getDate(4));
-                usuario.setLogin(resultado.getString(5));
-                usuario.setNumeroCartao(resultado.getInt(6));
-                usuario.setSenha(resultado.getString(7));
+                usuario.setCodigoSeguranca(resultado.getString(2));
+                usuario.setDataValidade(resultado.getDate(3));
+                usuario.setLogin(resultado.getString(4));
+                usuario.setNumeroCartao(resultado.getInt(5));
+                usuario.setSenha(resultado.getString(6));
 
                 usuarios.add(usuario);
             }

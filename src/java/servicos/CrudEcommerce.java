@@ -71,7 +71,6 @@ public class CrudEcommerce extends HttpServlet {
                         
                         if (usuario != null) {
 
-                            request.setAttribute("pedidosdecompra", usuario.getPedidosDeCompra());
                             request.setAttribute("datavalidade", usuario.getDataValidade());
                             request.setAttribute("numerocartao", usuario.getNumeroCartao());
                             request.setAttribute("codigoseguranca", usuario.getCodigoSeguranca());

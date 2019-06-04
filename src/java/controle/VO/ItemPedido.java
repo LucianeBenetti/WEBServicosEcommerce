@@ -1,18 +1,20 @@
 package controle.VO;
 
 public class ItemPedido {
-    
+
     private int codigoItemPedido;
-    private int quantidade;
+    private PedidoCompra pedidoCompra;
     private Item item;
+    private int quantidade;
 
     public ItemPedido() {
     }
 
-    public ItemPedido(int codigoItemPedido, int quantidade, Item item) {
+    public ItemPedido(int codigoItemPedido, PedidoCompra pedidoCompra, Item item, int quantidade) {
         this.codigoItemPedido = codigoItemPedido;
-        this.quantidade = quantidade;
+        this.pedidoCompra = pedidoCompra;
         this.item = item;
+        this.quantidade = quantidade;
     }
 
     public int getCodigoItemPedido() {
@@ -23,12 +25,12 @@ public class ItemPedido {
         this.codigoItemPedido = codigoItemPedido;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public PedidoCompra getPedidoCompra() {
+        return pedidoCompra;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setPedidoCompra(PedidoCompra pedidoCompra) {
+        this.pedidoCompra = pedidoCompra;
     }
 
     public Item getItem() {
@@ -39,11 +41,17 @@ public class ItemPedido {
         this.item = item;
     }
 
-    @Override
-    public String toString() {
-        return "ItemPedido{" + "codigoItemPedido=" + codigoItemPedido + ", quantidade=" + quantidade + ", item=" + item + '}';
+    public int getQuantidade() {
+        return quantidade;
     }
 
-   
-    
-}
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemPedido{" + "codigoItemPedido=" + codigoItemPedido + ", pedidoCompra=" + pedidoCompra + ", item=" + item + ", quantidade=" + quantidade + '}';
+    }
+
+   }

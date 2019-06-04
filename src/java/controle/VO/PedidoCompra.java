@@ -5,15 +5,15 @@ import java.util.Date;
 public class PedidoCompra {
 
     private int codigoPedido;
-    private ItemPedido itensDePedido;
+    private Usuario usuario;
     private Date dataPedido;
 
     public PedidoCompra() {
     }
 
-    public PedidoCompra(int codigoPedido, ItemPedido itensDePedido, Date dataPedido) {
+    public PedidoCompra(int codigoPedido, Usuario usuario, Date dataPedido) {
         this.codigoPedido = codigoPedido;
-        this.itensDePedido = itensDePedido;
+        this.usuario = usuario;
         this.dataPedido = dataPedido;
     }
 
@@ -25,12 +25,12 @@ public class PedidoCompra {
         this.codigoPedido = codigoPedido;
     }
 
-    public ItemPedido getItensDePedido() {
-        return itensDePedido;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setItensDePedido(ItemPedido itensDePedido) {
-        this.itensDePedido = itensDePedido;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Date getDataPedido() {
@@ -43,8 +43,8 @@ public class PedidoCompra {
 
     @Override
     public String toString() {
-        return "PedidoCompra{" + "codigoPedido=" + codigoPedido + ", itensDePedido=" + itensDePedido + ", dataPedido=" + dataPedido + '}';
+        return "PedidoCompra{" + "codigoPedido=" + codigoPedido + ", usuario=" + usuario + ", dataPedido=" + dataPedido + '}';
     }
-    
+
     
 }
