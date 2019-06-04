@@ -57,8 +57,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Comprar</a></li>
+                        <li class="active"><a href="EcommerceValidado.jsp">Home</a></li>
+                        <li><a href="Carrinho.jsp">Comprar</a></li>
                         <li><a href="#">Compromisso</a></li>
                         <li><a href="#">Contato</a></li>
                     </ul>

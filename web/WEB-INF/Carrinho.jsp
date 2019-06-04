@@ -35,6 +35,8 @@
     </style>
 </head>
 <body>
+    
+    <div class="container">
     <form action="pedido" method="get">
         <div class="container">
             <h2>Selecione os Itens a serem adicionados ao Carrinho!</h2>
@@ -82,6 +84,7 @@
 
         </div>  
     </form>
+    </div>
         
     <footer class="container-fluid text-center">
         &copy; Desenvolvido por Luciane Benetti e Marco Sena.  

@@ -45,6 +45,8 @@
             }
         </style>
     </head>
+    
+    <div class="container">
     <body>
         <h2>Detalhes do Pedido</h2>
         <%
@@ -91,7 +93,7 @@
         </table>
         <%}%>
     </section>
-
+</div>
 
 
 </body>
