@@ -92,16 +92,30 @@
                     <td>R$ <%= valorTotal%></td>
                 </tr>
 
-            </table>
-
-            Nome do usuário: <br>
-            <input type="text" size="40" value="<% out.print(nomeUsuario); %>"><br><br>
-            Número do cartão: <br>
-            <input type="text" size="40" value="<% out.print(numeroCartao); %>"><br><br>
-            <%}%>
-            </section>
+            </table><br>
+            
+            <form action="fecharpedido" method="get"><br>
+                
+                <h4>Confira o <b>Número do seu Cartão</b>. Se não estiver correto, digite o novo número e clique em Atualizar Cartão!</h4> <br><br>
+                
+                <div class="form-group">
+                    <label for="nome">Nome do Usuário:</label>
+                    <input type="text" disabled value="<% out.print(nomeUsuario); %>" name="login" class="form-control" id="login" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nome">Número do Cartão:</label>
+                    <input type="text" value="<% out.print(numeroCartao); %>" name="numerocartao" class="form-control" id="numerocartao" required>
+                </div>
+                
+                <input type="hidden" id="atualizarcartao" name="atualizarcartao" value="atualizarcartao">
+                <button type="submit" class="btn btn-primary">Atualizar Cartão</button>
+                <input type="hidden" id="fecharpedido" name="fecharpedido" value="fecharpedido">
+                <button type="submit" class="btn btn-primary">Fechar Pedido</button>
+           
+            </form>
     </div>
-
+ <%}%>
 
 </body>
 </html>

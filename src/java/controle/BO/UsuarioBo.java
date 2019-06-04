@@ -53,4 +53,8 @@ public class UsuarioBo {
         return usuarioDao.listarTodosOsUsuarios();
     }
 
+    public boolean atualizarCartaoDoUsuario(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
