@@ -23,12 +23,11 @@ public class FecharPedido extends HttpServlet {
         Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
 
         Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
-        String nomeUsuario = dadosDoUsuario.getLogin();
-
+      
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
-
+     
         Usuario usuario = null;
         Item item = null;
         UsuarioBo usuarioBo = null;
@@ -41,24 +40,29 @@ public class FecharPedido extends HttpServlet {
                     case "atualizarcartao":
 
                         usuario = new Usuario();
-                        usuario.setLogin(nomeUsuario);
+                        usuario.setCodigoUsuario(dadosDoUsuario.getCodigoUsuario());
+                        usuario.setCodigoSeguranca(dadosDoUsuario.getCodigoSeguranca());
+                        usuario.setLogin(dadosDoUsuario.getLogin());
+                        usuario.setSenha(dadosDoUsuario.getSenha());
+                        usuario.setDataValidade(dadosDoUsuario.getDataValidade());
                         int numeroCartao = new Integer(request.getParameter("numerocartao"));
                         usuario.setNumeroCartao(numeroCartao);
+                        System.out.println("A variável é : " + var);
                         usuarioBo = new UsuarioBo();
-                  boolean cartaoAtualizado = usuarioBo.atualizarCartaoDoUsuario(usuario);
+                        boolean cartaoAtualizado = usuarioBo.atualizarCartaoDoUsuario(usuario);
+                        
                         if (cartaoAtualizado) {
-
-//                            request.setAttribute("codigousario", novoId);
+                     
 //                            request.setAttribute("codigoseguranca", );
 //                            request.setAttribute("datavalidade", );
 //                            request.setAttribute("login", );
 //                            request.setAttribute("numerocartao", );
 //                            request.setAttribute("senha", );
-                            request.getRequestDispatcher("Login.jsp").forward(request, response);
-                            System.out.println("O novo Id é: " + cartaoAtualizado);
+                            request.getRequestDispatcher("WEB-INF/PedidoFechado.jsp").forward(request, response);
+                            System.out.println("O novo numero do cartao é: " + cartaoAtualizado);
 
                         } else {
-                            System.out.println("Já existe um usuário com o mesmo nome e/ou senha. Tente outro nome!");
+                           // System.out.println("Já existe um usuário com o mesmo nome e/ou senha. Tente outro nome!");
 
                         }
                         break;
@@ -94,19 +98,7 @@ public class FecharPedido extends HttpServlet {
 
                         break;
 
-                    case "pesquisar":
-                        item = new Item();
-
-                        usuarioBo = new UsuarioBo();
-                    //    item = usuarioBo.pesquisarItem(descricao);
-
-                        if (item != null) {
-                            //     System.out.println(item);
-
-                        }
-                        break;
-
-                    default:
+                                      default:
 
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
 

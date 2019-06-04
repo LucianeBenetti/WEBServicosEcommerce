@@ -93,29 +93,32 @@
                 </tr>
 
             </table><br>
-            
+
             <form action="fecharpedido" method="get"><br>
-                
+
                 <h4>Confira o <b>Número do seu Cartão</b>. Se não estiver correto, digite o novo número e clique em Atualizar Cartão!</h4> <br><br>
-                
+
                 <div class="form-group">
                     <label for="nome">Nome do Usuário:</label>
                     <input type="text" disabled value="<% out.print(nomeUsuario); %>" name="login" class="form-control" id="login" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="nome">Número do Cartão:</label>
                     <input type="text" value="<% out.print(numeroCartao); %>" name="numerocartao" class="form-control" id="numerocartao" required>
                 </div>
-                
+
                 <input type="hidden" id="atualizarcartao" name="atualizarcartao" value="atualizarcartao">
                 <button type="submit" class="btn btn-primary">Atualizar Cartão</button>
+            </form>
+
+            <form action="fecharpedido" method="get"><br>      
                 <input type="hidden" id="fecharpedido" name="fecharpedido" value="fecharpedido">
                 <button type="submit" class="btn btn-primary">Fechar Pedido</button>
-           
+
             </form>
     </div>
- <%}%>
+    <%}%>
 
 </body>
 </html>

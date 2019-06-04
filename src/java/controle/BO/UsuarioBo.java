@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controle.BO;
 
 import controle.DAO.UsuarioDao;
@@ -10,17 +5,12 @@ import controle.VO.Item;
 import controle.VO.Usuario;
 import java.util.ArrayList;
 
-/**
- *
- * @author 80119050
- */
 public class UsuarioBo {
 
-    UsuarioDao usuarioDao;
-    Item item;
+    UsuarioDao usuarioDao = new UsuarioDao();
+    Item item = new Item();
 
     public int cadastrarUsuario(Usuario usuario) {
-        usuarioDao = new UsuarioDao();
         int novoId;
         if (usuarioDao.pesquisarUsuario(usuario) != null) {
             novoId = 0;
@@ -31,7 +21,6 @@ public class UsuarioBo {
     }
 
     public Usuario validarUsuario(Usuario usuario) {
-        usuarioDao = new UsuarioDao();
         usuario = usuarioDao.pesquisarUsuario(usuario);
         if (usuario == null) {
             return null;
@@ -41,7 +30,7 @@ public class UsuarioBo {
     }
 
     public Item pesquisarItem(String descricao) {
-        item = new Item();
+
         if (usuarioDao.pesquisarItem(descricao) == null) {
             return null;
         } else {
@@ -54,7 +43,14 @@ public class UsuarioBo {
     }
 
     public boolean atualizarCartaoDoUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
+        boolean atualizacao = false;
+
+        if (usuarioDao.atualizarCartaoDoUsuario(usuario)) {
+            atualizacao = true;
+            return atualizacao;
+        }
+
+        return atualizacao;
+    }
 }

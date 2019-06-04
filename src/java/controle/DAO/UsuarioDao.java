@@ -4,6 +4,7 @@ import controle.VO.Item;
 import controle.VO.PedidoCompra;
 import controle.VO.Usuario;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +50,6 @@ public class UsuarioDao {
     public Usuario pesquisarUsuario(Usuario usuario) {
 
         String query = "SELECT * FROM usuario WHERE login = ? and senha = ?";
-        
 
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
@@ -76,7 +76,7 @@ public class UsuarioDao {
             ConexaoComBanco.closeStatement(conn);
             ConexaoComBanco.closeConnection(conn);
         }
-        
+
         return usuario;
     }
 
@@ -145,6 +145,36 @@ public class UsuarioDao {
         }
 
         return usuarios;
+    }
+
+    public boolean atualizarCartaoDoUsuario(Usuario usuario) {
+
+        boolean atualizacao = false;
+        System.out.println("usuario.DAO. )" + usuario);
+        String query = "UPDATE usuario SET numeroCartao = ? WHERE codigoUsuario = ?";
+
+        Connection conn = ConexaoComBanco.getConnection();
+        PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
+
+        try {
+            prepStmt.setInt(1, usuario.getNumeroCartao());
+            prepStmt.setInt(2, usuario.getCodigoUsuario());
+            
+            int codigoRetorno = prepStmt.executeUpdate();
+
+            if (codigoRetorno == 1) {
+                atualizacao = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar Query de atualização do Cartão! Causa: \n: " + e.getMessage());
+        } finally {
+            ConexaoComBanco.closePreparedStatement(prepStmt);
+            ConexaoComBanco.closeConnection(conn);
+        }
+                
+        return atualizacao;
+
     }
 
 }

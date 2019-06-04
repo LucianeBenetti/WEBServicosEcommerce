@@ -24,7 +24,6 @@ public class CrudEcommerce extends HttpServlet {
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
-        System.out.println("O array é: " + variavel);
 
         Usuario usuario = null;
         Item item = null;
