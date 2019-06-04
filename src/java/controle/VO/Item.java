@@ -1,8 +1,6 @@
 package controle.VO;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 public class Item {
 
     private int codigoItem;

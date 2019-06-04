@@ -20,7 +20,7 @@ public class CrudEcommerce extends HttpServlet {
         String var1 = request.getParameter("cadastrar");
         String var2 = request.getParameter("validar");
         String descricao = request.getParameter("descricao");
-        
+
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
@@ -65,20 +65,23 @@ public class CrudEcommerce extends HttpServlet {
                         usuario = new Usuario();
                         usuario.setLogin(request.getParameter("login"));
                         usuario.setSenha(request.getParameter("senha"));
+
                         usuarioBo = new UsuarioBo();
-                        Usuario usuarioValidado = usuarioBo.validarUsuario(usuario);                        
+                        usuario = usuarioBo.validarUsuario(usuario);
                         
-                        if (usuarioValidado != null) {
-                            
-                            System.out.println("O usuário é: " + usuarioValidado);
-                            
-                            HttpSession session = request.getSession();
-                            
+                        if (usuario != null) {
+
+                            request.setAttribute("pedidosdecompra", usuario.getPedidosDeCompra());
+                            request.setAttribute("datavalidade", usuario.getDataValidade());
+                            request.setAttribute("numerocartao", usuario.getNumeroCartao());
+                            request.setAttribute("codigoseguranca", usuario.getCodigoSeguranca());
                             request.setAttribute("login", usuario.getLogin());
                             request.setAttribute("senha", usuario.getSenha());
-                            session.setAttribute("usuarioautenticado", usuario.getLogin());
+                            HttpSession session = request.getSession();
+
+                            session.setAttribute("usuarioautenticado", usuario);
+                            //System.out.println("usuario autenticado dentro do if )" + usuario);
                             //request.setAttribute("usuarioautenticado", usuario.getLogin());
-                            
                             request.getRequestDispatcher("WEB-INF/EcommerceValidado.jsp").forward(request, response);
 
                         } else {
@@ -96,7 +99,7 @@ public class CrudEcommerce extends HttpServlet {
                         item = usuarioBo.pesquisarItem(descricao);
 
                         if (item != null) {
-                       //     System.out.println(item);
+                            //     System.out.println(item);
 
                         }
                         break;

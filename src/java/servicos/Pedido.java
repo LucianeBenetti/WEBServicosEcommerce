@@ -1,6 +1,7 @@
 package servicos;
 
 import controle.VO.Item;
+import controle.VO.Usuario;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -16,26 +17,30 @@ public class Pedido extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         Object listaDeItens = request.getSession().getAttribute("listadeitens");
+        Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
+
         Double valorTotalDoItem = 0.0;
-        Double valorTotal = 0.0;        
+        Double valorTotal = 0.0;
+        Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
+        String nomeUsuario = dadosDoUsuario.getLogin();
+        int numeroCartao = dadosDoUsuario.getNumeroCartao();
         
         if (listaDeItens != null) {
 
-            ArrayList<Item> itens = (ArrayList<Item>) listaDeItens;            
+            ArrayList<Item> itens = (ArrayList<Item>) listaDeItens;
             ArrayList<Item> pedidoCompra = new ArrayList<Item>();
-            ArrayList <Integer> quantidades = new ArrayList <Integer>();
+            ArrayList<Integer> quantidades = new ArrayList<Integer>();
             DecimalFormat df = new DecimalFormat("0.00");
 
             for (int i = 0; i < itens.size(); i++) {
 
                 int codigoDoItem = itens.get(i).getCodigoItem();
-                
                 String descricaoDoItem = itens.get(i).getDescricao();
                 String detalheDoItem = itens.get(i).getDetalhes();
                 String nomeDoItem = itens.get(i).getNome();
-                Double valorDoItem = itens.get(i).getValor();                
+                Double valorDoItem = itens.get(i).getValor();
                 String quantidade = request.getParameter("quantidade_" + i);
-                
+
                 int qtidade = Integer.valueOf(quantidade);
                 quantidades.add(qtidade);
 
@@ -44,10 +49,10 @@ public class Pedido extends HttpServlet {
 
                 valorTotalDoItem = valorDoItem * qtidade;
                 valorTotal += valorTotalDoItem;
-               
-               request.setAttribute("valortotal", df.format(valorTotal));
-               
 
+                request.setAttribute("valortotal", df.format(valorTotal));
+                request.setAttribute("nomeusuario", nomeUsuario);
+                request.setAttribute("numerocartao", numeroCartao);
 //                int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
 //                int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
 //                int codigoItemPedido = pedidoUsuario.get(i).getItensDePedido().getCodigoItemPedido();
@@ -69,8 +74,7 @@ public class Pedido extends HttpServlet {
 //            }
                 // HttpSession session = request.getSession();
                 // session.setAttribute("pedidoUsuario", pedidoUsuario);
-                
-               }
+            }
             request.setAttribute("quantidades", quantidades);
             request.setAttribute("pedidocompra", pedidoCompra);
         }

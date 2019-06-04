@@ -8,46 +8,49 @@ package controle.BO;
 import controle.DAO.UsuarioDao;
 import controle.VO.Item;
 import controle.VO.Usuario;
+import java.util.ArrayList;
 
 /**
  *
  * @author 80119050
  */
 public class UsuarioBo {
-    
+
     UsuarioDao usuarioDao;
     Item item;
+
     public int cadastrarUsuario(Usuario usuario) {
-        usuarioDao = new UsuarioDao(); 
-        
-
+        usuarioDao = new UsuarioDao();
         int novoId;
-
-        if (usuarioDao.pesquisarUsuario(usuario.getLogin(), usuario.getSenha()) != null) {
-
+        if (usuarioDao.pesquisarUsuario(usuario) != null) {
             novoId = 0;
         } else {
             novoId = usuarioDao.cadastrarUsuario(usuario);
         }
-
         return novoId;
     }
-  
+
     public Usuario validarUsuario(Usuario usuario) {
-       
-       usuarioDao = new UsuarioDao ();
-      
-        if(usuarioDao.pesquisarUsuario(usuario.getLogin(), usuario.getSenha()) == null){
+        usuarioDao = new UsuarioDao();
+        usuario = usuarioDao.pesquisarUsuario(usuario);
+        if (usuario == null) {
             return null;
-            } else {return usuario;}
+        } else {
+            return usuario;
+        }
     }
 
     public Item pesquisarItem(String descricao) {
         item = new Item();
-        if(usuarioDao.pesquisarItem(descricao) == null){
+        if (usuarioDao.pesquisarItem(descricao) == null) {
             return null;
-        }else {return item;}
-        
+        } else {
+            return item;
+        }
     }
-    
+
+    public ArrayList<Usuario> PesquisarTodosUsuarios() {
+        return usuarioDao.listarTodosOsUsuarios();
+    }
+
 }

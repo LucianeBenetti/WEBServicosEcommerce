@@ -45,55 +45,62 @@
             }
         </style>
     </head>
-    
+
     <div class="container">
-    <body>
-        <h2>Detalhes do Pedido</h2>
-        <%
-            Object pedidoUsuario = request.getAttribute("pedidocompra");
-            Object valorTotal = request.getAttribute("valortotal");
-            Object quantidades = request.getAttribute("quantidades");
+        <body>
+            <h2>Detalhes do Pedido</h2>
+            <%
+                Object pedidoUsuario = request.getAttribute("pedidocompra");
+                Object valorTotal = request.getAttribute("valortotal");
+                Object quantidades = request.getAttribute("quantidades");
+                Object nomeUsuario = request.getAttribute("nomeusuario");
+                Object numeroCartao = request.getAttribute("numerocartao");
 
-            if (pedidoUsuario != null) {
-                ArrayList<Item> itemPedido = (ArrayList<Item>) pedidoUsuario;
-                ArrayList<Integer> qtidades = (ArrayList<Integer>) quantidades;
+                if (pedidoUsuario != null) {
+                    ArrayList<Item> itemPedido = (ArrayList<Item>) pedidoUsuario;
+                    ArrayList<Integer> qtidades = (ArrayList<Integer>) quantidades;
 
-        %>   
+            %>   
 
-        <table class="table table-hover">
-            <thead>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço do Item</th>
+                        <th>Qntde</th>
+                    </tr>
+                </thead>
+                <%      for (int i = 0; i < itemPedido.size(); i++) {
+                        Item pedidoItem = itemPedido.get(i);
+                        if (qtidades.get(i) > 0) {
+                %>
                 <tr>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Preço do Item</th>
-                    <th>Qntde</th>
+                    <td><% out.print(pedidoItem.getNome()); %></td>
+                    <td><% out.print(pedidoItem.getDescricao()); %></td>
+                    <td><% out.print(pedidoItem.getValor());%></td>
+                    <td><%=qtidades.get(i)%></td>
                 </tr>
-            </thead>
-            <%      for (int i = 0; i < itemPedido.size(); i++) {
-                    Item pedidoItem = itemPedido.get(i);
-                    if (qtidades.get(i) > 0) {
-            %>
-            <tr>
-                <td><% out.print(pedidoItem.getNome()); %></td>
-                <td><% out.print(pedidoItem.getDescricao()); %></td>
-                <td><% out.print(pedidoItem.getValor());%></td>
-                <td><%=qtidades.get(i)%></td>
-            </tr>
-            <%}
-                           } 
-            %>
+                <%}
+                    }
+                %>
 
-            <br />  
+                <br />  
 
-            <tr>
-                <td class="total" colspan="2">Total</td>
-                <td>R$ <%= valorTotal%></td>
-            </tr>
+                <tr>
+                    <td class="total" colspan="2">Total</td>
+                    <td>R$ <%= valorTotal%></td>
+                </tr>
 
-        </table>
-        <%}%>
-    </section>
-</div>
+            </table>
+
+            Nome do usuário: <br>
+            <input type="text" size="40" value="<% out.print(nomeUsuario); %>"><br><br>
+            Número do cartão: <br>
+            <input type="text" size="40" value="<% out.print(numeroCartao); %>"><br><br>
+            <%}%>
+            </section>
+    </div>
 
 
 </body>
