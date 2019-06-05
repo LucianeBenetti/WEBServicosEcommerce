@@ -57,6 +57,7 @@ public class Pedido extends HttpServlet {
             }
             HttpSession session = request.getSession();
             session.setAttribute("pedidocompra", pedidoCompra);
+            session.setAttribute("quantidades", quantidades); 
             
             request.setAttribute("quantidades", quantidades);
             request.setAttribute("pedidocompra", pedidoCompra);

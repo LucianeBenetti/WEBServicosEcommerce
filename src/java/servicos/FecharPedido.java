@@ -24,20 +24,22 @@ public class FecharPedido extends HttpServlet {
         String var1 = request.getParameter("atualizarcartao");
         String var2 = request.getParameter("fecharpedido");
         String var3 = request.getParameter("sairdosistema");
-
-        Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
-        Object fecharPedido = request.getSession().getAttribute("pedidocompra");
-
-        Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
-        ArrayList<ItemPedido> pedidoFechado = (ArrayList<ItemPedido>) fecharPedido;
-
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
         variavel.add(var3);
 
+        Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
+        Object fecharPedido = request.getSession().getAttribute("pedidocompra");
+        Object quantidadeItem = request.getSession().getAttribute("quantidades");
+
+        Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
+        ArrayList<Item> pedidoFechado = (ArrayList<Item>) fecharPedido;
+        ArrayList<Integer> qtidades = (ArrayList<Integer>) quantidadeItem;
+
+        Item itemPedido = new Item();
+
         Usuario usuario = null;
-        ItemPedido itemPedido = null;
         UsuarioBo usuarioBo = null;
         ItemPedidoBo itemPedidoBo = null;
 
@@ -47,7 +49,6 @@ public class FecharPedido extends HttpServlet {
             if (var != null) {
                 switch (var) {
                     case "atualizarcartao":
-
                         usuario = new Usuario();
                         usuario.setCodigoUsuario(dadosDoUsuario.getCodigoUsuario());
                         usuario.setCodigoSeguranca(dadosDoUsuario.getCodigoSeguranca());
@@ -61,36 +62,35 @@ public class FecharPedido extends HttpServlet {
                         boolean cartaoAtualizado = usuarioBo.atualizarCartaoDoUsuario(usuario);
 
                         if (cartaoAtualizado) {
-
                             request.getSession().getAttribute("pedidocompra");
                             request.getRequestDispatcher("WEB-INF/MostrarPedido.jsp").forward(request, response);
-
                         }
                         break;
 
                     case "fecharpedido":
-                        Item item = new Item();
-                        itemPedidoBo = new ItemPedidoBo();
-                        int novoIdPedidoCompra = itemPedidoBo.cadastrarPedidoCompra(dadosDoUsuario.getCodigoUsuario());
-                        int codigoItem = 0;
-                        int qtdade = 0;
-                        if (novoIdPedidoCompra > 0) {
-                            for (int j = 0; j < pedidoFechado.size(); j++) {
-                                item.setCodigoItem(pedidoFechado.get(i).getItem().getCodigoItem());
-                                itemPedido.setItem(item);
-                                qtdade = pedidoFechado.get(i).getQuantidade();
-                            }
 
-//                            itemPedidoBo = new ItemPedidoBo();
-//                            int novoCodigoItemPedido = itemPedidoBo.CadastrarPedido(codigoItem, novoIdPedidoCompra, qtdade);
-//                            if (novoCodigoItemPedido > 0) {
-//                                System.out.println("item pedido cadastrado");
-//                            }
+                        itemPedidoBo = new ItemPedidoBo();
+                        int novoCodigoPedidoCompra = itemPedidoBo.cadastrarPedidoCompra(dadosDoUsuario.getCodigoUsuario());
+                        int qtdade = 0;
+                        if (novoCodigoPedidoCompra > 0) {
+                            for (int j = 0; j < pedidoFechado.size(); j++) {
+                                if (qtidades.get(j) > 0) {
+                                    itemPedido.setCodigoItem(pedidoFechado.get(j).getCodigoItem());
+                                    qtdade = qtidades.get(j);
+
+                                    itemPedidoBo = new ItemPedidoBo();
+                                    int novoCodigoItemPedido = itemPedidoBo.CadastrarPedido(itemPedido.getCodigoItem(), novoCodigoPedidoCompra, qtdade);
+                                    if (novoCodigoItemPedido > 0) {
+                                        System.out.println("novoCodigoItemPedido_" + j + ": " + novoCodigoItemPedido);
+                                        request.setAttribute("nomedousuario", dadosDoUsuario.getLogin());
+                                        request.setAttribute("codigoseguranca", dadosDoUsuario.getCodigoSeguranca());
+                                        request.getRequestDispatcher("WEB-INF/PedidoFechado.jsp").forward(request, response);
+                                    }
+                                }
+
+                            }
                         }
-//
-//                            request.getRequestDispatcher("Login.jsp").forward(request, response);
-//
-//                        }
+
                         break;
 
                     case "sairdosistema":

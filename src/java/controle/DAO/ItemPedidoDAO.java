@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 public class ItemPedidoDAO {
 
     Usuario usuario = new Usuario();
@@ -22,29 +21,26 @@ public class ItemPedidoDAO {
 
     public int cadastrarPedidoCompra(int codigoUsuario) {
         int novoId = 0;
-        String sql = "INSERT INTO pedidoCompra (codigoUsuario)"
-                + " VALUES (?)";
+        String sql = "INSERT INTO pedidoCompra (codigoUsuario, dataPedido)"
+                + " VALUES (?,?)";
 
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, sql, Statement.RETURN_GENERATED_KEYS);
         try {
+
+            Date data = new Date(System.currentTimeMillis());
             
-//            Calendar c = Calendar.getInstance();
-//            c.setTime(pedidoCompra.getDataPedido().get);
-//            //java.sql.Date			
-//            Date dataSQL = new Date(c.getTimeInMillis());
             prepStmt.setInt(1, codigoUsuario);
-  //          prepStmt.setDate(2, pedidoCompra.getDataPedido(new Date()));
+            prepStmt.setDate(2, data);
             prepStmt.executeUpdate();
             ResultSet generatedKeys = prepStmt.getGeneratedKeys();
 
             if (generatedKeys.next()) {
                 novoId = generatedKeys.getInt(1);
-
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao executar o Cadastro do Consulta! Causa: \n: " + e.getMessage());
+            System.out.println("Erro ao executar o Cadastro do Pedido de Compra! Causa: \n: " + e.getMessage());
 
         } finally {
             ConexaoComBanco.closePreparedStatement(prepStmt);
