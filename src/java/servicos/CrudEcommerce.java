@@ -44,12 +44,6 @@ public class CrudEcommerce extends HttpServlet {
                         novoId = usuarioBo.cadastrarUsuario(usuario);
                         if (novoId > 0) {
 
-//                            request.setAttribute("codigousario", novoId);
-//                            request.setAttribute("codigoseguranca", );
-//                            request.setAttribute("datavalidade", );
-//                            request.setAttribute("login", );
-//                            request.setAttribute("numerocartao", );
-//                            request.setAttribute("senha", );
                             request.getRequestDispatcher("Login.jsp").forward(request, response);
                             System.out.println("O novo Id é: " + novoId);
 
@@ -67,7 +61,7 @@ public class CrudEcommerce extends HttpServlet {
 
                         usuarioBo = new UsuarioBo();
                         usuario = usuarioBo.validarUsuario(usuario);
-                        
+
                         if (usuario != null) {
 
                             request.setAttribute("datavalidade", usuario.getDataValidade());
@@ -78,14 +72,11 @@ public class CrudEcommerce extends HttpServlet {
                             HttpSession session = request.getSession();
 
                             session.setAttribute("usuarioautenticado", usuario);
-                            //System.out.println("usuario autenticado dentro do if )" + usuario);
-                            //request.setAttribute("usuarioautenticado", usuario.getLogin());
                             request.getRequestDispatcher("WEB-INF/EcommerceValidado.jsp").forward(request, response);
 
                         } else {
 
                             request.getRequestDispatcher("Login.jsp").forward(request, response);
-
                         }
 
                         break;
@@ -97,8 +88,6 @@ public class CrudEcommerce extends HttpServlet {
                         item = usuarioBo.pesquisarItem(descricao);
 
                         if (item != null) {
-                            //     System.out.println(item);
-
                         }
                         break;
 

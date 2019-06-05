@@ -24,6 +24,10 @@
         <servlet-name>FecharPedido</servlet-name>
         <servlet-class>servicos.FecharPedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MeusDados</servlet-name>
+        <servlet-class>servicos.MeusDados</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarItem</servlet-name>
         <url-pattern>/pesquisaritem</url-pattern>
@@ -58,6 +62,10 @@
     <servlet-mapping>
         <servlet-name>FecharPedido</servlet-name>
         <url-pattern>/fecharpedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MeusDados</servlet-name>
+        <url-pattern>/meusdados</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

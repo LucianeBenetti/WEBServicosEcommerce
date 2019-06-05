@@ -13,13 +13,9 @@ import java.util.ArrayList;
 
 public class UsuarioDao {
 
-    public UsuarioDao() {
-    }
-
     public int cadastrarUsuario(Usuario usuario) {
 
         int novoId = -1;
-
         String query = "INSERT INTO usuario (login, senha) VALUES (?,?)";
 
         Connection conn = ConexaoComBanco.getConnection();
@@ -28,7 +24,6 @@ public class UsuarioDao {
         try {
             prepStmt.setString(1, usuario.getLogin());
             prepStmt.setString(2, usuario.getSenha());
-
             prepStmt.executeUpdate();
 
             ResultSet generatedKeys = prepStmt.getGeneratedKeys();

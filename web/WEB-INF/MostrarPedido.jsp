@@ -105,11 +105,9 @@
 
                 <div class="form-group">
                     <label for="nome">Número do Cartão:</label>
-                    <input type="text" value="<% out.print(numeroCartao); %>" name="numerocartao" class="form-control" id="numerocartao" required>
+                    <input type="text" disabled value="<% out.print(numeroCartao); %>" name="numerocartao" class="form-control" id="numerocartao" required>
                 </div>
 
-                <input type="hidden" id="atualizarcartao" name="atualizarcartao" value="atualizarcartao">
-                <button type="submit" class="btn btn-primary">Atualizar Cartão</button>
             </form>
 
             <form action="fecharpedido" method="get"><br>      

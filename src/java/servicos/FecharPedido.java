@@ -28,6 +28,8 @@ public class FecharPedido extends HttpServlet {
         variavel.add(var1);
         variavel.add(var2);
         variavel.add(var3);
+        
+        System.out.println("var1: " + variavel);
 
         Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
         Object fecharPedido = request.getSession().getAttribute("pedidocompra");
@@ -63,7 +65,7 @@ public class FecharPedido extends HttpServlet {
 
                         if (cartaoAtualizado) {
                             request.getSession().getAttribute("pedidocompra");
-                            request.getRequestDispatcher("WEB-INF/MostrarPedido.jsp").forward(request, response);
+                            request.getRequestDispatcher("WEB-INF/MeusDados.jsp").forward(request, response);
                         }
                         break;
 

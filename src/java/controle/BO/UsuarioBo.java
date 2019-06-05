@@ -22,7 +22,7 @@ public class UsuarioBo {
     }
 
     public Usuario validarUsuario(Usuario usuario) {
-        usuarioDao = new UsuarioDao();
+  
         usuario = usuarioDao.pesquisarUsuario(usuario);
         if (usuario == null) {
             return null;
