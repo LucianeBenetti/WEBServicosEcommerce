@@ -71,7 +71,7 @@ public class UsuarioDao {
             ConexaoComBanco.closeStatement(conn);
             ConexaoComBanco.closeConnection(conn);
         }
-
+ System.out.println("usuario DAO: " + usuario);
         return usuario;
     }
 

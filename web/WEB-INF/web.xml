@@ -64,8 +64,8 @@
         <url-pattern>/fecharpedido</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MeusDados</servlet-name>
-        <url-pattern>/meusdados</url-pattern>
+        <servlet-name>AtualizarCartao</servlet-name>
+        <url-pattern>/atualizarcartao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

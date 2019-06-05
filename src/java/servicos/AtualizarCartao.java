@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MeusDados extends HttpServlet {
+public class AtualizarCartao extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class MeusDados extends HttpServlet {
 
         request.setAttribute("nomeusuario", nomeUsuario);
         request.setAttribute("numerocartao", numeroCartao);
-        request.getRequestDispatcher("WEB-INF/MeusDados.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/AtualizarCartao.jsp").forward(request, response);
 
     }
 

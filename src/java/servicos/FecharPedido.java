@@ -65,7 +65,7 @@ public class FecharPedido extends HttpServlet {
 
                         if (cartaoAtualizado) {
                             request.getSession().getAttribute("pedidocompra");
-                            request.getRequestDispatcher("WEB-INF/MeusDados.jsp").forward(request, response);
+                            request.getRequestDispatcher("WEB-INF/AtualizarCartao.jsp").forward(request, response);
                         }
                         break;
 

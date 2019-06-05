@@ -32,18 +32,14 @@
         </style>
     </head>
     <body>
-
         <div class="container">
-
             <h4>Digital LuMar - Confira abaixo os produtos oferecidos pela melhor loja da Internet, 
                 ou pesquise por um produto específico</h4>
             <form action="pesquisaritem" method="get">
                 Pesquise aqui:
                 <input type="text"  size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
                 <input type="submit"  value="Pesquisar!"><br><br>
-
             </form>
-
         </div>
         
         <nav class="navbar navbar-inverse">
@@ -72,9 +68,7 @@
                             <form action="fecharpedido" method="post">
                                 <input type="hidden" id="sairdosistema" name="sairdosistema" value="sairdosistema">
                                 <input class="btn" type="submit" name="sairdosistema" value="Sair">  
-                                
                             </form> 
-                        
                         </li>
                     </ul>
                 </div>

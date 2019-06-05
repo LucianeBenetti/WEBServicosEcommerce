@@ -24,9 +24,11 @@ public class UsuarioBo {
     public Usuario validarUsuario(Usuario usuario) {
   
         usuario = usuarioDao.pesquisarUsuario(usuario);
-        if (usuario == null) {
+         System.out.println("usuario BO: " + usuario);
+        if (usuario.getCodigoUsuario() == 0) {
             return null;
         } else {
+               
             return usuario;
         }
     }

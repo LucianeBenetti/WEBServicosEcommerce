@@ -61,21 +61,21 @@ public class CrudEcommerce extends HttpServlet {
 
                         usuarioBo = new UsuarioBo();
                         usuario = usuarioBo.validarUsuario(usuario);
-
+                        System.out.println("usuario CrudEcommerce: " + usuario);
                         if (usuario != null) {
 
+                            HttpSession session = request.getSession();
+                            session.setAttribute("usuarioautenticado", usuario);
                             request.setAttribute("datavalidade", usuario.getDataValidade());
                             request.setAttribute("numerocartao", usuario.getNumeroCartao());
                             request.setAttribute("codigoseguranca", usuario.getCodigoSeguranca());
                             request.setAttribute("login", usuario.getLogin());
                             request.setAttribute("senha", usuario.getSenha());
-                            HttpSession session = request.getSession();
 
-                            session.setAttribute("usuarioautenticado", usuario);
                             request.getRequestDispatcher("WEB-INF/EcommerceValidado.jsp").forward(request, response);
 
                         } else {
-
+                            Boolean validacao = false;
                             request.getRequestDispatcher("Login.jsp").forward(request, response);
                         }
 

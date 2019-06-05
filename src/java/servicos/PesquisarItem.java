@@ -27,9 +27,8 @@ public class PesquisarItem extends HttpServlet {
         if (itensEncontrados != null) {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
             itemJSON = itemDAOJSON.serializa(itensEncontrados);
-            
-            //System.out.println("O item JSON é: " +itemJSON);            
 
+         //  System.out.println("O item JSON é: " + itemJSON);
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
         }
@@ -38,47 +37,43 @@ public class PesquisarItem extends HttpServlet {
 
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
             itensEncontrados = itemDAOJSON.desserializa(itemJSON);
-            
-            //System.out.println("Os itens encontrados são: " +itensEncontrados);
-            
+
+       //   System.out.println("Os itens encontrados são: " + itensEncontrados);
             request.setAttribute("itensencontrados", itensEncontrados);
-
-            String page = (String) request.getSession().getAttribute("usuarioautenticado") == null? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
-                request.getRequestDispatcher(page).forward(request, response);
-                 
+            String page = (String) request.getSession().getAttribute("usuarioautenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
+            request.getRequestDispatcher(page).forward(request, response);
         }
-
     }
 
 //    @Override
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
-////
-////        RepositorioAlunoList rep = new RepositorioAlunoList();
-////        List<Aluno> lista = rep.getLista();
-////
-////        String nome = request.getParameter("nome");
-////        String matricula = request.getParameter("matricula");
-////        String email = request.getParameter("email");
-////
-////        Aluno a = new Aluno();
-////        a.setNome(nome);
-////        a.setMatricula(matricula);
-////        a.setEmail(email);
-////
-////        lista.add(a);
-////        DAOAluno daoAluno;
-////        String responseFormat = request.getHeader("accept");
-////        if (responseFormat != null && responseFormat.equals("JSON")) {
-////            response.setContentType("application/json;charset=UTF-8");
-////            daoAluno = new DAOAlunoJSON();
-////        } else {
-////            response.setContentType("text/xml;charset=UTF-8");
-////            daoAluno = new DAOAlunoXML();
-////        }
-////        response.setStatus(200);
-////        PrintWriter out = response.getWriter();
-////        out.print(daoAluno.serializa(rep));
+//
+//        RepositorioAlunoList rep = new RepositorioAlunoList();
+//        List<Aluno> lista = rep.getLista();
+//
+//        String nome = request.getParameter("nome");
+//        String matricula = request.getParameter("matricula");
+//        String email = request.getParameter("email");
+//
+//        Aluno a = new Aluno();
+//        a.setNome(nome);
+//        a.setMatricula(matricula);
+//        a.setEmail(email);
+//
+//        lista.add(a);
+//        DAOAluno daoAluno;
+//        String responseFormat = request.getHeader("accept");
+//        if (responseFormat != null && responseFormat.equals("JSON")) {
+//            response.setContentType("application/json;charset=UTF-8");
+//            daoAluno = new DAOAlunoJSON();
+//        } else {
+//            response.setContentType("text/xml;charset=UTF-8");
+//            daoAluno = new DAOAlunoXML();
+//        }
+//        response.setStatus(200);
+//        PrintWriter out = response.getWriter();
+//        out.print(daoAluno.serializa(rep));
 //    }
 //
 //    @Override

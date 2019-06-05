@@ -1,14 +1,13 @@
 <%-- 
-    Document   : MeusDados
-    Created on : 05/06/2019, 14:10:06
+    Document   : CancelarPedido
+    Created on : 05/06/2019, 15:53:30
     Author     : 80130917
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Meus Dados</title>
+           <title>Atualizar Cartão</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
@@ -46,24 +45,13 @@
         <div class="container">
             <%
                 Object nomeUsuario = request.getAttribute("nomeusuario");
-                Object numeroCartao = request.getAttribute("numerocartao");
+             
                 if (nomeUsuario != null) {
             %> 
-            <form action="fecharpedido" method="get"><br>
-
-                <h4>Confira o <b>Número do seu Cartão</b>. Se não estiver correto, digite o novo número e clique em Atualizar Cartão!</h4> <br><br>
-
-                <div class="form-group">
-                    <label for="nome">Nome do Usuário:</label>
-                    <input type="text" disabled value="<% out.print(nomeUsuario); %>" name="login" class="form-control" id="login" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="nome">Número do Cartão:</label>
-                    <input type="text" value="<% out.print(numeroCartao);%>" name="numerocartao" class="form-control" id="numerocartao" required>
-                </div>
-                <input type="hidden" id="atualizarcartao" name="atualizarcartao" value="atualizarcartao">
-                  <input type="submit" class="btn btn-danger" value="Atualizar Cartão">
+                       
+            <form action="" method="get"><br>
+                <input type="hidden" id="cancelarpedido" name="cancelarpedido" value="cancelarpedido">
+                <input type="submit" class="btn btn-danger" value="Cancelar Pedidos do Usuário">
             </form>
             <%}%>
         </div>
