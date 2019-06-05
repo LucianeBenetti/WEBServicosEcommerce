@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Pedido extends HttpServlet {
 
@@ -24,7 +25,7 @@ public class Pedido extends HttpServlet {
         Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
         String nomeUsuario = dadosDoUsuario.getLogin();
         int numeroCartao = dadosDoUsuario.getNumeroCartao();
-        
+
         if (listaDeItens != null) {
 
             ArrayList<Item> itens = (ArrayList<Item>) listaDeItens;
@@ -53,28 +54,10 @@ public class Pedido extends HttpServlet {
                 request.setAttribute("valortotal", df.format(valorTotal));
                 request.setAttribute("nomeusuario", nomeUsuario);
                 request.setAttribute("numerocartao", numeroCartao);
-//                int codigoPedido = pedidoUsuario.get(i).getCodigoPedido();
-//                int codigoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getCodigoItem();
-//                int codigoItemPedido = pedidoUsuario.get(i).getItensDePedido().getCodigoItemPedido();
-//                String nomeDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getNome();
-//                Double valorDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getValor();
-//                String detalheDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDetalhes();
-//                String descricaoDoItem = pedidoUsuario.get(i).getItensDePedido().getItem().getDescricao();
-//                String quantidade = request.getParameter("quantidade_" + i);
-//                int qtidade = Integer.valueOf(quantidade);
-//                Date dataPedido = null;
-//
-//                Item item = new Item(codigoDoItem, descricaoDoItem, detalheDoItem, nomeDoItem, valorDoItem);
-//                ItemPedido itemPedido = new ItemPedido(codigoItemPedido, qtidade, item);
-//                PedidoCompra pedidoCompra = new PedidoCompra(codigoPedido, itemPedido, dataPedido);
-//                pedidoUsuario.add(pedidoCompra);
-//
-//                valorPedido = valorDoItem * qtidade;
-//                valorTotal += valorPedido;
-//            }
-                // HttpSession session = request.getSession();
-                // session.setAttribute("pedidoUsuario", pedidoUsuario);
             }
+            HttpSession session = request.getSession();
+            session.setAttribute("pedidocompra", pedidoCompra);
+            
             request.setAttribute("quantidades", quantidades);
             request.setAttribute("pedidocompra", pedidoCompra);
         }

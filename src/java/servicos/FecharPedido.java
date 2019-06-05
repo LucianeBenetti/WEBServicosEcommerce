@@ -1,7 +1,10 @@
 package servicos;
 
+import controle.BO.ItemPedidoBo;
 import controle.BO.UsuarioBo;
 import controle.VO.Item;
+import controle.VO.ItemPedido;
+import controle.VO.PedidoCompra;
 import controle.VO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,19 +24,22 @@ public class FecharPedido extends HttpServlet {
         String var1 = request.getParameter("atualizarcartao");
         String var2 = request.getParameter("fecharpedido");
         String var3 = request.getParameter("sairdosistema");
-        
+
         Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
+        Object fecharPedido = request.getSession().getAttribute("pedidocompra");
 
         Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
-      
+        ArrayList<ItemPedido> pedidoFechado = (ArrayList<ItemPedido>) fecharPedido;
+
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
         variavel.add(var3);
-     
+
         Usuario usuario = null;
-        Item item = null;
+        ItemPedido itemPedido = null;
         UsuarioBo usuarioBo = null;
+        ItemPedidoBo itemPedidoBo = null;
 
         for (int i = 0; i < variavel.size(); i++) {
             String var = variavel.get(i);
@@ -53,53 +59,47 @@ public class FecharPedido extends HttpServlet {
                         System.out.println("A variável é : " + var);
                         usuarioBo = new UsuarioBo();
                         boolean cartaoAtualizado = usuarioBo.atualizarCartaoDoUsuario(usuario);
-                        
+
                         if (cartaoAtualizado) {
-                     
-//                            
-                            request.getRequestDispatcher("WEB-INF/PedidoFechado.jsp").forward(request, response);
-                            System.out.println("O novo numero do cartao é: " + cartaoAtualizado);
 
-                        } 
-                        break;
-
-                    case "fecharpedido":
-
-                        usuario = new Usuario();
-                        usuario.setLogin(request.getParameter("login"));
-                        usuario.setSenha(request.getParameter("senha"));
-
-                        usuarioBo = new UsuarioBo();
-                        usuario = usuarioBo.validarUsuario(usuario);
-
-                        if (usuario != null) {
-
-                            request.setAttribute("datavalidade", usuario.getDataValidade());
-                            request.setAttribute("numerocartao", usuario.getNumeroCartao());
-                            request.setAttribute("codigoseguranca", usuario.getCodigoSeguranca());
-                            request.setAttribute("login", usuario.getLogin());
-                            request.setAttribute("senha", usuario.getSenha());
-                            HttpSession session = request.getSession();
-
-                            session.setAttribute("usuarioautenticado", usuario);
-                            //System.out.println("usuario autenticado dentro do if )" + usuario);
-                            //request.setAttribute("usuarioautenticado", usuario.getLogin());
-                            request.getRequestDispatcher("WEB-INF/EcommerceValidado.jsp").forward(request, response);
-
-                        } else {
-
-                            request.getRequestDispatcher("Login.jsp").forward(request, response);
+                            request.getSession().getAttribute("pedidocompra");
+                            request.getRequestDispatcher("WEB-INF/MostrarPedido.jsp").forward(request, response);
 
                         }
                         break;
 
+                    case "fecharpedido":
+                        Item item = new Item();
+                        itemPedidoBo = new ItemPedidoBo();
+                        int novoIdPedidoCompra = itemPedidoBo.cadastrarPedidoCompra(dadosDoUsuario.getCodigoUsuario());
+                        int codigoItem = 0;
+                        int qtdade = 0;
+                        if (novoIdPedidoCompra > 0) {
+                            for (int j = 0; j < pedidoFechado.size(); j++) {
+                                item.setCodigoItem(pedidoFechado.get(i).getItem().getCodigoItem());
+                                itemPedido.setItem(item);
+                                qtdade = pedidoFechado.get(i).getQuantidade();
+                            }
+
+//                            itemPedidoBo = new ItemPedidoBo();
+//                            int novoCodigoItemPedido = itemPedidoBo.CadastrarPedido(codigoItem, novoIdPedidoCompra, qtdade);
+//                            if (novoCodigoItemPedido > 0) {
+//                                System.out.println("item pedido cadastrado");
+//                            }
+                        }
+//
+//                            request.getRequestDispatcher("Login.jsp").forward(request, response);
+//
+//                        }
+                        break;
+
                     case "sairdosistema":
-                            
-                        request.getSession().invalidate();        
+
+                        request.getSession().invalidate();
                         request.getRequestDispatcher("LuMarEcommerce.jsp").forward(request, response);
-                    break;
-                    
-                        default:
+                        break;
+
+                    default:
 
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
 

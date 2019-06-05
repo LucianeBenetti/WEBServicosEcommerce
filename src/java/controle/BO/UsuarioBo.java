@@ -2,6 +2,7 @@ package controle.BO;
 
 import controle.DAO.UsuarioDao;
 import controle.VO.Item;
+import controle.VO.ItemPedido;
 import controle.VO.Usuario;
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class UsuarioBo {
     }
 
     public Usuario validarUsuario(Usuario usuario) {
+        usuarioDao = new UsuarioDao();
         usuario = usuarioDao.pesquisarUsuario(usuario);
         if (usuario == null) {
             return null;
@@ -53,4 +55,11 @@ public class UsuarioBo {
 
         return atualizacao;
     }
+
+    public ItemPedido FecharPedido(ItemPedido pedido) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
+    
 }
