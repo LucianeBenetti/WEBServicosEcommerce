@@ -25,8 +25,8 @@
         <servlet-class>servicos.FecharPedido</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MeusDados</servlet-name>
-        <servlet-class>servicos.MeusDados</servlet-class>
+        <servlet-name>AtualizarCartao</servlet-name>
+        <servlet-class>servicos.AtualizarCartao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarItem</servlet-name>
