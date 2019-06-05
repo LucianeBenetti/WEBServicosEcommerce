@@ -20,6 +20,8 @@ public class FecharPedido extends HttpServlet {
 
         String var1 = request.getParameter("atualizarcartao");
         String var2 = request.getParameter("fecharpedido");
+        String var3 = request.getParameter("sairdosistema");
+        
         Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
 
         Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
@@ -27,6 +29,7 @@ public class FecharPedido extends HttpServlet {
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
+        variavel.add(var3);
      
         Usuario usuario = null;
         Item item = null;
@@ -53,18 +56,11 @@ public class FecharPedido extends HttpServlet {
                         
                         if (cartaoAtualizado) {
                      
-//                            request.setAttribute("codigoseguranca", );
-//                            request.setAttribute("datavalidade", );
-//                            request.setAttribute("login", );
-//                            request.setAttribute("numerocartao", );
-//                            request.setAttribute("senha", );
+//                            
                             request.getRequestDispatcher("WEB-INF/PedidoFechado.jsp").forward(request, response);
                             System.out.println("O novo numero do cartao é: " + cartaoAtualizado);
 
-                        } else {
-                           // System.out.println("Já existe um usuário com o mesmo nome e/ou senha. Tente outro nome!");
-
-                        }
+                        } 
                         break;
 
                     case "fecharpedido":
@@ -95,10 +91,15 @@ public class FecharPedido extends HttpServlet {
                             request.getRequestDispatcher("Login.jsp").forward(request, response);
 
                         }
-
                         break;
 
-                                      default:
+                    case "sairdosistema":
+                            
+                        request.getSession().invalidate();        
+                        request.getRequestDispatcher("LuMarEcommerce.jsp").forward(request, response);
+                    break;
+                    
+                        default:
 
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
 
