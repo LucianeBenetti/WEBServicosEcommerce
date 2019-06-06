@@ -28,6 +28,10 @@
         <servlet-name>AtualizarCartao</servlet-name>
         <servlet-class>servicos.AtualizarCartao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MaisVendidos</servlet-name>
+        <servlet-class>servicos.MaisVendidos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarItem</servlet-name>
         <url-pattern>/pesquisaritem</url-pattern>
@@ -66,6 +70,10 @@
     <servlet-mapping>
         <servlet-name>AtualizarCartao</servlet-name>
         <url-pattern>/atualizarcartao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MaisVendidos</servlet-name>
+        <url-pattern>/maisvendidos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

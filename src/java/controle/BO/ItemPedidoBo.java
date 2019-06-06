@@ -15,9 +15,11 @@ public class ItemPedidoBo {
     }
 
     public int CadastrarPedido(int codigoItem, int novoIdPedidoCompra, int qtdade) {
-        return itemPedidoDAO.cadastrarPedido (codigoItem, novoIdPedidoCompra, qtdade);
+        return itemPedidoDAO.cadastrarPedido(codigoItem, novoIdPedidoCompra, qtdade);
     }
 
-       
+    public ArrayList<ItemPedido> buscarItensMaisVendidos() {
+        return itemPedidoDAO.buscarItensMaisVendidos();
+    }
 
 }

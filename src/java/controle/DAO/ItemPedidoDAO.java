@@ -29,7 +29,7 @@ public class ItemPedidoDAO {
         try {
 
             Date data = new Date(System.currentTimeMillis());
-            
+
             prepStmt.setInt(1, codigoUsuario);
             prepStmt.setDate(2, data);
             prepStmt.executeUpdate();
@@ -78,6 +78,39 @@ public class ItemPedidoDAO {
         }
         return novoId;
 
+    }
+
+    public ArrayList<ItemPedido> buscarItensMaisVendidos() {
+
+        String query = "select codigoItem, sum(quantidadeItem) "
+                + " from itemPedido "
+                + " group by codigoItem "
+                + " order by sum(quantidadeItem) desc";
+
+        Connection conn = ConexaoComBanco.getConnection();
+        PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
+
+        ArrayList<ItemPedido> itensPedidos = new ArrayList<ItemPedido>();
+
+        try {
+            ResultSet resultado = prepStmt.executeQuery(query);
+
+            while (resultado.next()) {
+                ItemPedido itemPedido = new ItemPedido();
+
+                Item item = DAOItem.consultarPorCodigoItem(resultado.getInt(1));
+                item.getCodigoItem();
+                itemPedido.setItem(item);
+                itemPedido.setQuantidade(resultado.getInt(2));
+
+                itensPedidos.add(itemPedido);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return itensPedidos;
     }
 
 }

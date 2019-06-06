@@ -64,6 +64,10 @@ public class Item {
     public String toString() {
         return "Item{" + "codigoItem=" + codigoItem + ", descricao=" + descricao + ", detalhes=" + detalhes + ", nome=" + nome + ", valor=" + valor + '}';
     }
+
+    public Item consultarItemPOrCodigoItem(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
    
 }

@@ -56,7 +56,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="EcommerceValidado.jsp">Home</a></li>
                         <li><a href="carrinho">Comprar</a></li>
-                        <li><a href="#">Compromisso</a></li>
+                        <li><a href="#">Mais Vendidos</a></li>
                         <li><a href="#">Contato</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
