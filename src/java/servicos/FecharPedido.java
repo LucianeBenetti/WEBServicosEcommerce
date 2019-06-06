@@ -64,7 +64,9 @@ public class FecharPedido extends HttpServlet {
                         boolean cartaoAtualizado = usuarioBo.atualizarCartaoDoUsuario(usuario);
 
                         if (cartaoAtualizado) {
+                            int numeroCartaoOK = 1;
                             request.getSession().getAttribute("pedidocompra");
+                            request.setAttribute("cartaoatualizado", numeroCartaoOK);
                             request.getRequestDispatcher("WEB-INF/AtualizarCartao.jsp").forward(request, response);
                         }
                         break;

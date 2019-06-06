@@ -96,7 +96,7 @@
 
             <form action="fecharpedido" method="get"><br>
 
-                <h4>Confira o <b>Número do seu Cartão</b>. Se não estiver correto, digite o novo número e clique em Atualizar Cartão!</h4> <br><br>
+                <h4>Dados para cobrança!</b></h4> <br><br>
 
                 <div class="form-group">
                     <label for="nome">Nome do Usuário:</label>
