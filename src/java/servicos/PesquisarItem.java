@@ -40,7 +40,7 @@ public class PesquisarItem extends HttpServlet {
 
        //   System.out.println("Os itens encontrados são: " + itensEncontrados);
             request.setAttribute("itensencontrados", itensEncontrados);
-            String page = (String) request.getSession().getAttribute("usuarioautenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
+            String page = request.getSession().getAttribute("usuarioautenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
             request.getRequestDispatcher(page).forward(request, response);
         }
     }

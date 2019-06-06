@@ -54,22 +54,21 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="EcommerceValidado.jsp">Home</a></li>
+                        <li class="active"><a href="voltarhomeautenticado">Home</a></li>
                         <li><a href="carrinho">Comprar</a></li>
-                        <li><a href="#">Mais Vendidos</a></li>
+                        <li><a href="maisvendidos">Mais Vendidos</a></li>
                         <li><a href="#">Contato</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
-                            Minha Conta
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href=".jsp">Listar Pedidos</a><br>
-                            <a class="dropdown-item" href=".jsp">Cancelar Pedidos</a><br>
-                            <a class="dropdown-item" href="atualizarcartao">Alterar Forma de pagamento</a><br>
-                        </div>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
+                                Minha Conta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href=".jsp">Listar/Cancelar Pedidos</a><br>
+                                <a class="dropdown-item" href="atualizarcartao">Alterar Forma de pagamento</a><br>
+                            </div>
                         </li>
 
                         <li><input class="btn" style="margin: 14px 0px 10px 10px; padding: 0px;"  size="10" type="text" value="<%out.println("Olá " + request.getAttribute("login") + "!");%>"></li>

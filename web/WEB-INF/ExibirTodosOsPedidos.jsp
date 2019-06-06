@@ -43,19 +43,61 @@
         </style>
     </head>
     <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" style="padding:4px; float: bottom"><i class="fas fa-globe" style="font-size:40px;color:red;"></i></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="voltarhomeautenticado">Home</a></li>
+                        <li><a href="carrinho">Comprar</a></li>
+                        <li><a href="maisvendidos">Mais Vendidos</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
+                                Minha Conta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href=".jsp">Listar/Cancelar Pedidos</a><br>
+                                <a class="dropdown-item" href="atualizarcartao">Alterar Forma de pagamento</a><br>
+                            </div>
+                        </li>
+
+                        <li><input class="btn" style="margin: 14px 0px 10px 10px; padding: 0px;"  size="10" type="text" value="<%out.println("Olá " + request.getAttribute("nomeusuario") + "!");%>"></li>
+                        <li><a href="carrinho"><span class="glyphicon glyphicon-shopping-cart"></span>Carrinho</a></li>
+                        <li>
+                            <form action="fecharpedido" method="post">
+                                <input type="hidden" id="sairdosistema" name="sairdosistema" value="sairdosistema">
+                                <input class="btn" type="submit" name="sairdosistema" value="Sair">  
+                            </form> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <div class="container">
             <%
                 Object nomeUsuario = request.getAttribute("nomeusuario");
-              
+
                 if (nomeUsuario != null) {
             %> 
-            
+
             <form action="" method="get"><br>
                 <input type="hidden" id="mostrarpedidosdousuario" name="mostrarpedidosdousuario" value="mostrarpedidosdousuario">
                 <input type="submit" class="btn btn-danger" value="Mostrar Pedidos do Usuário">
             </form>
 
-            
+
             <%}%>
         </div>
     </body>

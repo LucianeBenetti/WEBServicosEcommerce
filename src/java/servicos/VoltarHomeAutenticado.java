@@ -1,32 +1,19 @@
 package servicos;
 
-import controle.BO.ItemPedidoBo;
-import controle.VO.ItemPedido;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MaisVendidos extends HttpServlet {
+public class VoltarHomeAutenticado extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        ItemPedido itemPedido = new ItemPedido();
-        ItemPedidoBo itemPedidoBO = new ItemPedidoBo();
-        ArrayList<ItemPedido> itensMaisVendidos = new ArrayList<ItemPedido>();
-        itensMaisVendidos = itemPedidoBO.buscarItensMaisVendidos();
-
-        if (itensMaisVendidos != null) {
-
-            request.setAttribute("itensmaisvendidos", itensMaisVendidos);
-
-        }
-        request.getRequestDispatcher("MaisVendidos.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/EcommerceValidado.jsp").forward(request, response);
 
     }
 

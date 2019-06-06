@@ -38,6 +38,7 @@
         </style>
     </head>
     <body>
+        
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -50,25 +51,24 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="EcommerceValidado.jsp">Home</a></li>
+                        <li class="active"><a href="voltarhomeautenticado">Home</a></li>
                         <li><a href="carrinho">Comprar</a></li>
-                        <li><a href="#">Compromisso</a></li>
+                        <li><a href="maisvendidos">Mais Vendidos</a></li>
                         <li><a href="#">Contato</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
-                            Minha Conta
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href=".jsp">Listar Pedidos</a><br>
-                            <a class="dropdown-item" href=".jsp">Cancelar Pedidos</a><br>
-                            <a class="dropdown-item" href="atualizarcartao">Alterar Forma de pagamento</a><br>
-                        </div>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
+                                Minha Conta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href=".jsp">Listar/Cancelar Pedidos</a><br>
+                                <a class="dropdown-item" href="atualizarcartao">Alterar Forma de pagamento</a><br>
+                            </div>
                         </li>
 
-                        <li><input class="btn" style="margin: 14px 0px 10px 10px; padding: 0px;"  size="10" type="text" value="<%out.println("Olá " + request.getAttribute("nomeUsuario") + "!");%>"></li>
+                        <li><input class="btn" style="margin: 14px 0px 10px 10px; padding: 0px;"  size="10" type="text" value="<%out.println("Olá " + request.getAttribute("nomeusuario") + "!");%>"></li>
                         <li><a href="carrinho"><span class="glyphicon glyphicon-shopping-cart"></span>Carrinho</a></li>
                         <li>
                             <form action="fecharpedido" method="post">
@@ -80,15 +80,14 @@
                 </div>
             </div>
         </nav>
-                        
+        <%
+
+            Object nomeUsuario = request.getAttribute("nomeusuario");
+            Object numeroCartao = request.getAttribute("numerocartao");
+            if (nomeUsuario != null) {
+        %> 
         <div class="container">
-            <%
-//              Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
-//               Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
-                Object nomeUsuario = request.getAttribute("nomeusuario");
-                Object numeroCartao = request.getAttribute("numerocartao");
-                if (nomeUsuario != null) {
-            %> 
+
             <form action="fecharpedido" method="get"><br>
 
                 <h4>Confira o <b>Número do seu Cartão</b>. Se não estiver correto, digite o novo número e clique em Atualizar Cartão!</h4> <br><br>
@@ -108,7 +107,8 @@
             <%}
 
                 Object cartaoAtualizado = request.getAttribute("cartaoatualizado");
-                if (cartaoAtualizado != null) {%>
+                if (cartaoAtualizado != null) {
+            %>
 
             <div class="container">
                 <h2>O número do seu cartão foi atualizado com sucesso!!</h2>

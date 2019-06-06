@@ -54,31 +54,51 @@
                     <a class="navbar-brand" style="padding:4px; float: bottom"><i class="fas fa-globe" style="font-size:40px;color:red;"></i></a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="voltarhomeautenticado">Home</a></li>
+                        <li><a href="carrinho">Comprar</a></li>
+                        <li><a href="maisvendidos">Mais Vendidos</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
+                                Minha Conta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href=".jsp">Listar/Cancelar Pedidos</a><br>
+                                <a class="dropdown-item" href="atualizarcartao">Alterar Forma de pagamento</a><br>
+                            </div>
+                        </li>
+
+                        <li><input class="btn" style="margin: 14px 0px 10px 10px; padding: 0px;"  size="10" type="text" value="<%out.println("Olá " + request.getAttribute("nomeusuario") + "!");%>"></li>
+                        <li><a href="carrinho"><span class="glyphicon glyphicon-shopping-cart"></span>Carrinho</a></li>
                         <li>
                             <form action="fecharpedido" method="post">
                                 <input type="hidden" id="sairdosistema" name="sairdosistema" value="sairdosistema">
                                 <input class="btn" type="submit" name="sairdosistema" value="Sair">  
-                          </form> 
-                      </li>
+                            </form> 
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container">
-         <h1>Seu pedido foi Finalizado! Anote seu cóigo de segurança: </h1>
-        <% 
-            Object nomeDoUsuario = request.getAttribute("nomedousuario");
-            Object codigoSeguranca = request.getAttribute("codigoseguranca");
 
-            if (nomeDoUsuario != null) {
-                String nome = (String) nomeDoUsuario;
-                String codigo = (String) codigoSeguranca;%>
-                
-               
-                 <h3><b><% out.print(nome);%></b> O seu código de segurança é: <b><% out.print(codigo);%></b> </h3>
-                </div>
-         <% } %>
-              
+        <div class="container">
+            <h1>Seu pedido foi Finalizado! Anote seu cóigo de segurança: </h1>
+            <%
+                Object nomeDoUsuario = request.getAttribute("nomedousuario");
+                Object codigoSeguranca = request.getAttribute("codigoseguranca");
+
+                if (nomeDoUsuario != null) {
+                    String nome = (String) nomeDoUsuario;
+                    String codigo = (String) codigoSeguranca;%>
+
+
+            <h3><b><% out.print(nome);%></b> O seu código de segurança é: <b><% out.print(codigo);%></b> </h3>
+        </div>
+        <% }%>
+
     </body>
 </html>
