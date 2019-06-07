@@ -10,8 +10,8 @@ public class ItemPedidoBo {
 
     ItemPedidoDAO itemPedidoDAO = new ItemPedidoDAO();
 
-    public int cadastrarPedidoCompra(int codigoUsuario) {
-        return itemPedidoDAO.cadastrarPedidoCompra(codigoUsuario);
+    public int cadastrarPedidoCompra(int codigoUsuario, double valorTotal) {
+        return itemPedidoDAO.cadastrarPedidoCompra(codigoUsuario, valorTotal);
     }
 
     public int CadastrarPedido(int codigoItem, int novoIdPedidoCompra, int qtdade) {
@@ -20,6 +20,10 @@ public class ItemPedidoBo {
 
     public ArrayList<ItemPedido> buscarItensMaisVendidos() {
         return itemPedidoDAO.buscarItensMaisVendidos();
+    }
+
+    public ArrayList<PedidoCompra> BuscarTodosOsPedidos(int usuarioAutenticado) {
+        return itemPedidoDAO.BuscarTodosOsPedidos(usuarioAutenticado);
     }
 
 }

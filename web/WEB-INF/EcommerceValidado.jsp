@@ -66,7 +66,7 @@
                                 Minha Conta
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href=".jsp">Listar/Cancelar Pedidos</a><br>
+                                <a class="dropdown-item" href="listartodospedidos">Listar/Cancelar Pedidos</a><br>
                                 <a class="dropdown-item" href="atualizarcartao">Alterar Forma de pagamento</a><br>
                             </div>
                         </li>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="col-sm-4"> 
                     <div class="panel panel-success">
-                        <div class="panel-heading">Celuar Senasung</div>
+                        <div class="panel-heading">Celular Senasung</div>
                         <div class="panel-body"><img src="celular.jpg" class="img-responsive" style="width:67%" alt="Image"></div>
                         <div class="panel-footer">Celuar M10 top de linha! Só R$ 2,00.</div>
                     </div>

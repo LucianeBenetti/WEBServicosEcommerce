@@ -1,6 +1,7 @@
 package controle.DAO;
 
 import controle.VO.Item;
+import controle.VO.PedidoCompra;
 import controle.VO.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ public class DAOItem {
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
         Item item = null;
-   
+
         try {
             prepStmt.setInt(1, codigoItem);
             ResultSet result = prepStmt.executeQuery();
@@ -37,16 +38,17 @@ public class DAOItem {
         }
         return item;
     }
-    
+
+           
     public ArrayList<Item> pesquisarItem(String descricaoProduto) {
 
         String query = "SELECT * from item where descricao like ? ";
-        
+
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
-        Item item = null;        
+        Item item = null;
         ArrayList<Item> itens = new ArrayList<>();
-        
+
         try {
             prepStmt.setString(1, '%' + descricaoProduto + '%');
             ResultSet result = prepStmt.executeQuery();
@@ -71,11 +73,11 @@ public class DAOItem {
 
     public ArrayList<Item> buscarItensParaAdiconarAoCarrinho() {
         String query = "SELECT * from item ";
-        
+
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
         Item item = null;
-        
+
         ArrayList<Item> itens = new ArrayList<>();
         try {
             ResultSet result = prepStmt.executeQuery();
@@ -96,6 +98,5 @@ public class DAOItem {
         }
         return itens;
     }
-    
-}
 
+}

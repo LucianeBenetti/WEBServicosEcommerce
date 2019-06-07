@@ -19,10 +19,10 @@ public class ItemPedidoDAO {
     PedidoCompra pedidoCompra = new PedidoCompra();
     ItemPedido itemPedido = new ItemPedido();
 
-    public int cadastrarPedidoCompra(int codigoUsuario) {
+    public int cadastrarPedidoCompra(int codigoUsuario, double valorTotal) {
         int novoId = 0;
-        String sql = "INSERT INTO pedidoCompra (codigoUsuario, dataPedido)"
-                + " VALUES (?,?)";
+        String sql = "INSERT INTO pedidoCompra (codigoUsuario, dataPedido, valorTotal)"
+                + " VALUES (?,?,?)";
 
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, sql, Statement.RETURN_GENERATED_KEYS);
@@ -32,6 +32,7 @@ public class ItemPedidoDAO {
 
             prepStmt.setInt(1, codigoUsuario);
             prepStmt.setDate(2, data);
+            prepStmt.setDouble(3, valorTotal);
             prepStmt.executeUpdate();
             ResultSet generatedKeys = prepStmt.getGeneratedKeys();
 
@@ -111,6 +112,39 @@ public class ItemPedidoDAO {
         }
 
         return itensPedidos;
+    }
+
+    public ArrayList<PedidoCompra> BuscarTodosOsPedidos(int usuarioAutenticado) {
+        String query = "select * from pedidoCompra where codigoUsuario = ?";
+
+        PedidoCompra pedidoCompra = null;
+        Connection conn = ConexaoComBanco.getConnection();
+        PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
+        ArrayList<PedidoCompra> pedidosCompra = new ArrayList<PedidoCompra>();
+        try {
+
+            prepStmt.setInt(1, usuarioAutenticado);
+            ResultSet result = prepStmt.executeQuery();
+
+            while (result.next()) {
+
+                pedidoCompra = new PedidoCompra();
+                pedidoCompra.setCodigoPedido(result.getInt(1));
+                Usuario usuario = UsuarioDao.BuscarUsuarioPorCodigoDoUsuario(result.getInt(2));
+                usuario.getCodigoUsuario();
+                pedidoCompra.setUsuario(usuario);
+                pedidoCompra.setDataPedido(result.getDate(3));
+                pedidoCompra.setValorTotal(result.getDouble(4));
+                pedidosCompra.add(pedidoCompra);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            ConexaoComBanco.closePreparedStatement(prepStmt);
+            ConexaoComBanco.closeConnection(conn);
+        }
+      
+        return pedidosCompra;
     }
 
 }

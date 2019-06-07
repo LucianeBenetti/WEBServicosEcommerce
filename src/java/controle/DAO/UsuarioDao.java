@@ -10,8 +10,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import static org.hibernate.validator.internal.util.CollectionHelper.newArrayList;
 
 public class UsuarioDao {
+
+    static Usuario BuscarUsuarioPorCodigoDoUsuario(int usarioAutenticado) {
+
+        String query = "SELECT * FROM usuario where codigoUsuario = ?";
+
+        Usuario usuario = null;
+        Connection conn = ConexaoComBanco.getConnection();
+        PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
+
+        try {
+            prepStmt.setInt(1, usarioAutenticado);
+            ResultSet resultado = prepStmt.executeQuery();
+
+            while (resultado.next()) {
+                usuario = new Usuario();
+
+                usuario.setCodigoUsuario(resultado.getInt(1));
+                usuario.setCodigoSeguranca(resultado.getString(2));
+                usuario.setDataValidade(resultado.getDate(3));
+                usuario.setLogin(resultado.getString(4));
+                usuario.setNumeroCartao(resultado.getInt(5));
+                usuario.setSenha(resultado.getString(6));
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar a Query de busc de Usuário!Causa: \n: " + e.getMessage());
+        } finally {
+            ConexaoComBanco.closeStatement(conn);
+            ConexaoComBanco.closeConnection(conn);
+        }
+        System.out.println("controle.DAO.UsuarioDao.BuscarUsuarioPorCodigoDoUsuario()" + usuario);
+        return usuario;
+
+    }
 
     public int cadastrarUsuario(Usuario usuario) {
 
@@ -153,7 +189,7 @@ public class UsuarioDao {
         try {
             prepStmt.setInt(1, usuario.getNumeroCartao());
             prepStmt.setInt(2, usuario.getCodigoUsuario());
-            
+
             int codigoRetorno = prepStmt.executeUpdate();
 
             if (codigoRetorno == 1) {
@@ -166,7 +202,7 @@ public class UsuarioDao {
             ConexaoComBanco.closePreparedStatement(prepStmt);
             ConexaoComBanco.closeConnection(conn);
         }
-                
+
         return atualizacao;
 
     }

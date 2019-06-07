@@ -45,7 +45,6 @@ public class CrudEcommerce extends HttpServlet {
                         if (novoId > 0) {
 
                             request.getRequestDispatcher("Login.jsp").forward(request, response);
-                            System.out.println("O novo Id é: " + novoId);
 
                         } else {
                             System.out.println("Já existe um usuário com o mesmo nome e/ou senha. Tente outro nome!");
@@ -61,7 +60,6 @@ public class CrudEcommerce extends HttpServlet {
 
                         usuarioBo = new UsuarioBo();
                         usuario = usuarioBo.validarUsuario(usuario);
-                        System.out.println("usuario CrudEcommerce: " + usuario);
                         if (usuario != null) {
 
                             HttpSession session = request.getSession();

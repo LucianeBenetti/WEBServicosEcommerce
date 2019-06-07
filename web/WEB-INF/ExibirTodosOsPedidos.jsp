@@ -1,9 +1,6 @@
-<%-- 
-    Document   : ExibirPedidos
-    Created on : 05/06/2019, 15:51:54
-    Author     : 80130917
---%>
 
+<%@page import="controle.VO.PedidoCompra"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -87,18 +84,41 @@
 
         <div class="container">
             <%
-                Object nomeUsuario = request.getAttribute("nomeusuario");
 
-                if (nomeUsuario != null) {
-            %> 
+                Object dadosDoPedidoDoUsuario = request.getAttribute("dadosdopedidodousuario");
+                ArrayList<PedidoCompra> pedidosDeCompraDoUsuario = (ArrayList<PedidoCompra>) dadosDoPedidoDoUsuario;
+                if (pedidosDeCompraDoUsuario != null) {
 
-            <form action="" method="get"><br>
-                <input type="hidden" id="mostrarpedidosdousuario" name="mostrarpedidosdousuario" value="mostrarpedidosdousuario">
-                <input type="submit" class="btn btn-danger" value="Mostrar Pedidos do Usuário">
+            %>
+            <form action="crudecommerce" method="get"><br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Codigo do Pedido</th>
+                            <th>Data do Pedido</th>
+                            <th>Valor Total</th>
+                            <th>Excluir Pedido</th>
+                        </tr>
+                    </thead>
+                    <%                    for (int i = 0; i < pedidosDeCompraDoUsuario.size(); i++) {
+
+                    %>            
+                    <tbody>
+                        <tr>
+                            <td><% out.print(pedidosDeCompraDoUsuario.get(i).getCodigoPedido()); %></td>
+                            <td><% out.print(pedidosDeCompraDoUsuario.get(i).getDataPedido()); %></td>
+                            <td><% out.print("R$ " + pedidosDeCompraDoUsuario.get(i).getValorTotal());%></td>     
+                            <td><a href="crudecommerce">Excluir</a></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
             </form>
-
-
             <%}%>
-        </div>
-    </body>
+        </div>    
+
+
+
+    </div>
+</body>
 </html>

@@ -7,14 +7,16 @@ public class PedidoCompra {
     private int codigoPedido;
     private Usuario usuario;
     private Date dataPedido;
+    private double valorTotal;
 
     public PedidoCompra() {
     }
 
-    public PedidoCompra(int codigoPedido, Usuario usuario, Date dataPedido) {
+    public PedidoCompra(int codigoPedido, Usuario usuario, Date dataPedido, double valorTotal) {
         this.codigoPedido = codigoPedido;
         this.usuario = usuario;
         this.dataPedido = dataPedido;
+        this.valorTotal = valorTotal;
     }
 
     public int getCodigoPedido() {
@@ -41,10 +43,19 @@ public class PedidoCompra {
         this.dataPedido = dataPedido;
     }
 
-    @Override
-    public String toString() {
-        return "PedidoCompra{" + "codigoPedido=" + codigoPedido + ", usuario=" + usuario + ", dataPedido=" + dataPedido + '}';
+    public double getValorTotal() {
+        return valorTotal;
     }
 
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoCompra{" + "codigoPedido=" + codigoPedido + ", usuario=" + usuario + ", dataPedido=" + dataPedido + ", valorTotal=" + valorTotal + '}';
+    }
+
+    
     
 }

@@ -24,7 +24,6 @@ public class UsuarioBo {
     public Usuario validarUsuario(Usuario usuario) {
   
         usuario = usuarioDao.pesquisarUsuario(usuario);
-         System.out.println("usuario BO: " + usuario);
         if (usuario.getCodigoUsuario() == 0) {
             return null;
         } else {
@@ -58,10 +57,5 @@ public class UsuarioBo {
         return atualizacao;
     }
 
-    public ItemPedido FecharPedido(ItemPedido pedido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-  
-    
+       
 }
