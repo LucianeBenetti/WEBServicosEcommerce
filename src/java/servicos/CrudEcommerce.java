@@ -20,15 +20,14 @@ public class CrudEcommerce extends HttpServlet {
 
         String var1 = request.getParameter("cadastrar");
         String var2 = request.getParameter("validar");
-        String var3 = request.getParameter("excluirpedido");         
+        String var3 = request.getParameter("excluirpedido");
         String descricao = request.getParameter("descricao");
-        System.out.println("Var 3: " +var3);
-        
 
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
         variavel.add(var3);
+        System.out.println("Var 3: " + variavel);
 
         Usuario usuario = null;
         Item item = null;
@@ -93,14 +92,15 @@ public class CrudEcommerce extends HttpServlet {
                         if (item != null) {
                         }
                         break;
-                        
-                    case "excluirpedido":                       
-                       String codigoDoPedido = request.getParameter("codigoPedido");
-                       int codigoPedido = new Integer(codigoDoPedido).intValue();
-                       System.out.println("O código do pedido é: " +codigoPedido);
-                       PedidoCompra pedidoCompra = new PedidoCompra();              
-                       usuarioBo = new UsuarioBo();
-                                                
+
+                    case "excluirpedido":
+                       
+                        int codigoPedido = new Integer(request.getParameter("codigopedido"));
+                        System.out.println("O código do pedido é: " + codigoPedido);
+//fazer dao para a tabela itempedido para excluir o codigopedido
+                        PedidoCompra pedidoCompra = new PedidoCompra();
+                        usuarioBo = new UsuarioBo();
+
                         if (usuarioBo.excluirPedidoDoUsuario(codigoPedido)) {
                             System.out.println("Pedido do Usuário excluído com sucesso!");
                             //request.getRequestDispatcher("Login.jsp").forward(request, response);
@@ -109,7 +109,7 @@ public class CrudEcommerce extends HttpServlet {
                             System.out.println("Não foi possível excluir Pedido do Usuário!");
 
                         }
-                        break;    
+                        break;
 
                     default:
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
