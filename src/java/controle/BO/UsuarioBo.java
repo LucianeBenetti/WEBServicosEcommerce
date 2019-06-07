@@ -1,5 +1,6 @@
 package controle.BO;
 
+import controle.DAO.PedidoCompraDAO;
 import controle.DAO.UsuarioDao;
 import controle.VO.Item;
 import controle.VO.ItemPedido;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public class UsuarioBo {
 
     UsuarioDao usuarioDao = new UsuarioDao();
+    PedidoCompraDAO pedidoCompraDAO = new PedidoCompraDAO(); 
     Item item = new Item();
 
     public int cadastrarUsuario(Usuario usuario) {
@@ -55,6 +57,10 @@ public class UsuarioBo {
         }
 
         return atualizacao;
+    }
+
+    public boolean excluirPedidoDoUsuario(int codigoDoPedido) {
+        return pedidoCompraDAO.excluirPedidoDoUsuario(codigoDoPedido);
     }
 
        

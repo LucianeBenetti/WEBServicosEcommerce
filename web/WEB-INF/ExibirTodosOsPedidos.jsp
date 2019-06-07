@@ -90,7 +90,7 @@
                 if (pedidosDeCompraDoUsuario != null) {
 
             %>
-            <form action="crudecommerce" method="get"><br>
+            
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -100,15 +100,22 @@
                             <th>Excluir Pedido</th>
                         </tr>
                     </thead>
-                    <%                    for (int i = 0; i < pedidosDeCompraDoUsuario.size(); i++) {
-
+                    <% 
+                        for (int i = 0; i < pedidosDeCompraDoUsuario.size(); i++) {
+                            int codigoPedido = pedidosDeCompraDoUsuario.get(i).getCodigoPedido();
+                                        
                     %>            
                     <tbody>
                         <tr>
                             <td><% out.print(pedidosDeCompraDoUsuario.get(i).getCodigoPedido()); %></td>
                             <td><% out.print(pedidosDeCompraDoUsuario.get(i).getDataPedido()); %></td>
                             <td><% out.print("R$ " + pedidosDeCompraDoUsuario.get(i).getValorTotal());%></td>     
-                            <td><a href="crudecommerce">Excluir</a></td>
+                            <td><form action="crudecommerce" method="get">
+                                    <input type="hidden" name="excluirpedido">
+                                    <input type="hidden" name="<%= codigoPedido%>">
+                                    <input type="submit" class="btn" value="Excluir">
+                                </form>
+                            </td>
                         </tr>
                         <%}%>
                     </tbody>
