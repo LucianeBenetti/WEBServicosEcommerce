@@ -1,5 +1,7 @@
 package servicos;
 
+import controle.BO.ItemPedidoBo;
+import controle.BO.PedidoCompraBo;
 import controle.BO.UsuarioBo;
 import controle.VO.Item;
 import controle.VO.PedidoCompra;
@@ -32,6 +34,9 @@ public class CrudEcommerce extends HttpServlet {
         Usuario usuario = null;
         Item item = null;
         UsuarioBo usuarioBo = null;
+        ItemPedidoBo itemPedidoBo = null;
+        PedidoCompraBo pedidoCompraBo = null;
+       
 
         for (int i = 0; i < variavel.size(); i++) {
             String var = variavel.get(i);
@@ -97,16 +102,24 @@ public class CrudEcommerce extends HttpServlet {
                        
                         int codigoPedido = new Integer(request.getParameter("codigopedido"));
                         System.out.println("O código do pedido é: " + codigoPedido);
-//fazer dao para a tabela itempedido para excluir o codigopedido
-                        PedidoCompra pedidoCompra = new PedidoCompra();
-                        usuarioBo = new UsuarioBo();
+                        
+                        itemPedidoBo = new ItemPedidoBo();
+                        pedidoCompraBo = new PedidoCompraBo();
+                        
+                        if(itemPedidoBo.cancelarCodigoDoPedidoCompra (codigoPedido)){
+                        
+                            System.out.println("Pedido de Compra excluído com sucesso!");
+                            boolean pedidoDeCompraExcluido = pedidoCompraBo.excluirPedidoDoUsuario(codigoPedido);
+                            
+                            if (pedidoDeCompraExcluido) {
+                                System.out.println("Pedido do Usuário excluído com sucesso!");
+                                //request.getRequestDispatcher("Login.jsp").forward(request, response);
+                        
+                        }else {System.out.println("Não foi possível excluir Pedido do Usuário!");}
 
-                        if (usuarioBo.excluirPedidoDoUsuario(codigoPedido)) {
-                            System.out.println("Pedido do Usuário excluído com sucesso!");
-                            //request.getRequestDispatcher("Login.jsp").forward(request, response);
+                        
 
-                        } else {
-                            System.out.println("Não foi possível excluir Pedido do Usuário!");
+                        } else {System.out.println("Não foi possível excluir o Código do Pedido do Usuário!");
 
                         }
                         break;

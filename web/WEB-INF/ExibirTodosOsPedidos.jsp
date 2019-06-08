@@ -83,6 +83,8 @@
         </nav>
 
         <div class="container">
+            
+            <h2>Esses são os seus pedidos!</h2><br><br>
             <%
 
                 Object dadosDoPedidoDoUsuario = request.getAttribute("dadosdopedidodousuario");
@@ -116,16 +118,13 @@
             <br><br>                
             <form action="crudecommerce" method="get">
                 <input type="hidden" id="excluirpedido" name="excluirpedido" value="excluirpedido">
-                Digite o número do pedido a ser excluído: <br>
+                Se desejar excluir um Pedido, digite o Código do Pedido e clique no botão Excluir.<br><br>
                 <input type="text" name="codigopedido">
                 <input type="submit" class="btn" value="Excluir">
             </form>
-        </form>
+        
         <%}%>
-    </div>    
+    </div>  
 
-
-
-</div>
 </body>
 </html>

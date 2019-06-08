@@ -30,7 +30,7 @@ public class PedidoCompraDAO {
                 sucessoNaExclusao = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao executar Query de Exclus�o do Paciente! Causa: \n: " + e.getMessage());
+            System.out.println("Erro ao executar Query de Exclusão do Código do Pedido! Causa: \n: " + e.getMessage());
         } finally {
             ConexaoComBanco.closePreparedStatement(prepStmt);
             ConexaoComBanco.closeConnection(conn);

@@ -147,4 +147,29 @@ public class ItemPedidoDAO {
         return pedidosCompra;
     }
 
+    public boolean cancelarCodigoDoPedidoComora(int codigoPedido) {
+        
+        boolean sucessoNaExclusao = false;
+        
+        String query = "DELETE from itemPedido where codigoPedido = ?";
+
+        Connection conn = ConexaoComBanco.getConnection();
+        PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
+
+        try {
+            prepStmt.setInt(1, codigoPedido);
+            int codigoRetorno = prepStmt.executeUpdate();
+            if (codigoRetorno == 1) {
+                sucessoNaExclusao = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar Query de Exclusão do Código do Pedido! Causa: \n: " + e.getMessage());
+        } finally {
+            ConexaoComBanco.closePreparedStatement(prepStmt);
+            ConexaoComBanco.closeConnection(conn);
+        }
+        return sucessoNaExclusao;
+        
+    }
+
 }

@@ -1,7 +1,6 @@
 package controle.BO;
 
 import controle.DAO.ItemPedidoDAO;
-import controle.VO.Item;
 import controle.VO.ItemPedido;
 import controle.VO.PedidoCompra;
 import java.util.ArrayList;
@@ -25,5 +24,11 @@ public class ItemPedidoBo {
     public ArrayList<PedidoCompra> BuscarTodosOsPedidos(int usuarioAutenticado) {
         return itemPedidoDAO.BuscarTodosOsPedidos(usuarioAutenticado);
     }
+
+    public boolean cancelarCodigoDoPedidoCompra(int codigoPedido) {
+        return itemPedidoDAO.cancelarCodigoDoPedidoComora(codigoPedido);
+    }
+
+   
 
 }
