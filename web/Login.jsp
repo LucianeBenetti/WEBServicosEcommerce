@@ -10,7 +10,31 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-     
+ 
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      background-color: #191970;
+      margin-bottom: 10px;
+      border-radius: 0;
+      padding:0px;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+      padding: 0px;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      color: red;
+      padding: 5px;
+      margin-top: 14.5%;
+      position:  fixed;
+    }
+  </style>
 </head>
 <body>
     
@@ -54,9 +78,9 @@
 </div>
     
 
-<div class="jumbotron text-center" style="margin-bottom: 0%; height: 0.5%; padding: 0.5%;">
-  <p>&copy; Desenvolvido por Luciane Benetti e Marco Sena.</p>
-</div>
+<footer class="container-fluid text-center">
+    &copy; Desenvolvido por Luciane Benetti e Marco Sena.  
+</footer>
 
 </body>
 </html>

@@ -1,36 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servicos;
 
 import controle.BO.ItemPedidoBo;
 import controle.BO.UsuarioBo;
 import controle.VO.Item;
-import controle.VO.ItemPedido;
-import controle.VO.PedidoCompra;
 import controle.VO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author Marco
+ */
 public class FecharPedido extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        response.setContentType("text/html;charset=UTF-8");
 
         String var1 = request.getParameter("atualizarcartao");
         String var2 = request.getParameter("fecharpedido");
-        String var3 = request.getParameter("sairdosistema");
+        
         ArrayList<String> variavel = new ArrayList<String>();
         variavel.add(var1);
         variavel.add(var2);
-        variavel.add(var3);
+        
 
-        System.out.println("var1: " + variavel);
+        System.out.println("A variável é: " + variavel);
 
         Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
         Object fecharPedido = request.getSession().getAttribute("pedidocompra");
@@ -107,21 +114,15 @@ public class FecharPedido extends HttpServlet {
                         }
 
                         break;
-
-                    case "sairdosistema":
-
-                        request.getSession().invalidate();
-                        request.getRequestDispatcher("LuMarEcommerce.jsp").forward(request, response);
-                        break;
-
+                    
                     default:
-
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
 
                         break;
                 }
             }
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

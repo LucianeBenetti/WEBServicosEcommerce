@@ -21,10 +21,6 @@
         <servlet-class>servicos.Pedido</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FecharPedido</servlet-name>
-        <servlet-class>servicos.FecharPedido</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AtualizarCartao</servlet-name>
         <servlet-class>servicos.AtualizarCartao</servlet-class>
     </servlet>
@@ -39,6 +35,14 @@
     <servlet>
         <servlet-name>ListarTodosPedidos</servlet-name>
         <servlet-class>servicos.ListarTodosPedidos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FecharPedido</servlet-name>
+        <servlet-class>servicos.FecharPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SairDoSistema</servlet-name>
+        <servlet-class>servicos.SairDoSistema</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarItem</servlet-name>
@@ -72,10 +76,6 @@
         <url-pattern>/pedido</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FecharPedido</servlet-name>
-        <url-pattern>/fecharpedido</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AtualizarCartao</servlet-name>
         <url-pattern>/atualizarcartao</url-pattern>
     </servlet-mapping>
@@ -90,6 +90,14 @@
     <servlet-mapping>
         <servlet-name>ListarTodosPedidos</servlet-name>
         <url-pattern>/listartodospedidos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FecharPedido</servlet-name>
+        <url-pattern>/fecharpedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SairDoSistema</servlet-name>
+        <url-pattern>/sairdosistema</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

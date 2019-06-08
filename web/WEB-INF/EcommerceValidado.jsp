@@ -14,32 +14,38 @@
         <style>
             /* Remove the navbar's default rounded borders and increase the bottom margin */ 
             .navbar {
+                background-color: #191970;
                 margin-bottom: 10px;
                 border-radius: 0;
+                padding:0px;
             }
 
             /* Remove the jumbotron's default bottom margin */ 
             .jumbotron {
                 margin-bottom: 0;
-                padding: 10px;
+                padding: 0px;
             }
 
             /* Add a gray background color and some padding to the footer */
             footer {
                 background-color: #f2f2f2;
-                padding: 25px;
+                color: red;
+                padding: 5px;
             }
         </style>
     </head>
     <body>
-        <div class="container">
+        <div class="container text-center">
+
             <h4>Digital LuMar - Confira abaixo os produtos oferecidos pela melhor loja da Internet, 
                 ou pesquise por um produto específico</h4>
             <form action="pesquisaritem" method="get">
                 Pesquise aqui:
-                <input type="text"  size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
-                <input type="submit"  value="Pesquisar!"><br><br>
+                <input type="text" size="60" name="descricaoproduto" placeholder="Digite a descrição de um produto!">
+                <input class="btn btn-danger" type="submit"  value="Pesquisar!"><br><br>
+
             </form>
+
         </div>
 
         <nav class="navbar navbar-inverse">
@@ -74,9 +80,9 @@
                         <li><input class="btn" style="margin: 14px 0px 10px 10px; padding: 0px;"  size="10" type="text" value="<%out.println("Olá " + request.getAttribute("login") + "!");%>"></li>
                         <li><a href="carrinho"><span class="glyphicon glyphicon-shopping-cart"></span>Carrinho</a></li>
                         <li>
-                            <form action="fecharpedido" method="post">
-                                <input type="hidden" id="sairdosistema" name="sairdosistema" value="sairdosistema">
-                                <input class="btn" type="submit" name="sairdosistema" value="Sair">  
+                            <form action="sairdosistema" method="post">
+                                
+                                <input class="btn" type="submit" value="Sair" style="padding: 2px; margin-top: 12px;">  
                             </form> 
                         </li>
                     </ul>
