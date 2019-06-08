@@ -102,7 +102,7 @@
                         <th>Excluir Pedido</th>
                     </tr>
                 </thead>
-                <%                        for (int i = 0; i < pedidosDeCompraDoUsuario.size(); i++) {
+                <%for (int i = 0; i < pedidosDeCompraDoUsuario.size(); i++) {
                         int codigoPedido = pedidosDeCompraDoUsuario.get(i).getCodigoPedido();
 
                 %>            
@@ -124,7 +124,18 @@
             </form>
         
         <%}%>
-    </div>  
-
+   
+    <h2>
+                
+        <%
+                Object pedidoDeCompraCancelado = request.getAttribute("pedidodecompracancelado");
+              
+                if (pedidoDeCompraCancelado != null) {                
+                  
+                    out.println("O seu Pedido foi cancelado com sucesso!");                                
+                }
+            %>       
+    </h2>    
+    </div>
 </body>
 </html>

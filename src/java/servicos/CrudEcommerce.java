@@ -109,11 +109,14 @@ public class CrudEcommerce extends HttpServlet {
                         if(itemPedidoBo.cancelarCodigoDoPedidoCompra (codigoPedido)){
                         
                             System.out.println("Pedido de Compra excluído com sucesso!");
-                            boolean pedidoDeCompraExcluido = pedidoCompraBo.excluirPedidoDoUsuario(codigoPedido);
+                            boolean pedidoDeCompraCancelado = pedidoCompraBo.excluirPedidoDoUsuario(codigoPedido);
                             
-                            if (pedidoDeCompraExcluido) {
+                            if (pedidoDeCompraCancelado) {
                                 System.out.println("Pedido do Usuário excluído com sucesso!");
-                                //request.getRequestDispatcher("Login.jsp").forward(request, response);
+                               
+                                request.setAttribute("pedidodecompracancelado", pedidoDeCompraCancelado);
+                                request.setAttribute("codigopedido", codigoPedido);
+                                request.getRequestDispatcher("WEB-INF/ExibirTodosOsPedidos.jsp").forward(request, response);
                         
                         }else {System.out.println("Não foi possível excluir Pedido do Usuário!");}
 
