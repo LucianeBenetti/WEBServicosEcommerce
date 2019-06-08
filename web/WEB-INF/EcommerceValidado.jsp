@@ -59,8 +59,7 @@
                     <a class="navbar-brand" style="padding:4px; float: bottom"><i class="fas fa-globe" style="font-size:40px;color:red;"></i></a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="voltarhomeautenticado">Home</a></li>
+                    <ul class="nav navbar-nav">                        
                         <li><a href="carrinho">Comprar</a></li>
                         <li><a href="maisvendidos">Mais Vendidos</a></li>
                         <li><a href="#">Contato</a></li>

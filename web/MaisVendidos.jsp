@@ -76,9 +76,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="LuMarEcommerce.jsp">Home</a></li>
                         <li><a href="#" onclick="alertaDeCompra()">Comprar</a></li>
-                        <li><a href="maisvendidos">Mais Vendidos</a></li>
                         <li><a href="#">Contato</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
