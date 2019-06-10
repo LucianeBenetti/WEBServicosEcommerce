@@ -22,27 +22,30 @@ public class PesquisarItem extends HttpServlet {
         DAOItem itemDAO = new DAOItem();
         ArrayList<Item> itensEncontrados = new ArrayList<Item>();
         itensEncontrados = itemDAO.pesquisarItem(descricaoProduto);
-        String itemJSON = null;
+        String itemJson = null;
 
         if (itensEncontrados != null) {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
-            itemJSON = itemDAOJSON.serializa(itensEncontrados);
+            itemJson = itemDAOJSON.serializa(itensEncontrados);
+            
+            PrintWriter out = response.getWriter();            
+            out.print(itemJson);
 
-         //  System.out.println("O item JSON é: " + itemJSON);
+           //System.out.println("O item JSON é: " + itemJson);
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
         }
 
-        if (itemJSON != null) {
-
-            ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
-            itensEncontrados = itemDAOJSON.desserializa(itemJSON);
-
-       //   System.out.println("Os itens encontrados são: " + itensEncontrados);
-            request.setAttribute("itensencontrados", itensEncontrados);
-            String page = request.getSession().getAttribute("usuarioautenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
-            request.getRequestDispatcher(page).forward(request, response);
-        }
+//        if (itemJson != null) {
+//
+//            ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
+//            itensEncontrados = itemDAOJSON.desserializa(itemJson);
+                        
+          //System.out.println("Os itens encontrados são: " + itensEncontrados);
+//            request.setAttribute("itensencontrados", itensEncontrados);
+//            String page = request.getSession().getAttribute("usuarioautenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
+//            request.getRequestDispatcher(page).forward(request, response);
+        //}
     }
 
 //    @Override
