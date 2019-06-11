@@ -19,13 +19,13 @@ public class Main {
     }
 
     private static void clienteServicoGET() throws MalformedURLException, IOException {
-        String resourceURI = "http://localhost:8080/WEBServicosEcommerce/pesquisaritem?descricaoproduto=Bola+de+volei";
+        String resourceURI = "http://localhost:8080/WEBServicosEcommerce/pesquisaritem";
         
         String formatedURL = resourceURI;//+ httpParameters;
         URL url = new URL(formatedURL);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestProperty("accept", "JSON");
-        con.setRequestMethod("GET");
+        con.setRequestMethod("get");
         InputStream is = con.getInputStream();
         String respose = convertStreamToString(is);
         ItemDAOJSON itemDAOJSON = new ItemDAOJSON ();

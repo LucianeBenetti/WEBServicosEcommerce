@@ -28,24 +28,25 @@ public class PesquisarItem extends HttpServlet {
             ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
             itemJson = itemDAOJSON.serializa(itensEncontrados);
             
-            PrintWriter out = response.getWriter();            
-            out.print(itemJson);
+//            PrintWriter out = response.getWriter();            
+//            out.print(itemJson);
 
            //System.out.println("O item JSON é: " + itemJson);
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
         }
 
-//        if (itemJson != null) {
-//
-//            ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
-//            itensEncontrados = itemDAOJSON.desserializa(itemJson);
+        if (itemJson != null) {
+
+            ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
+            itensEncontrados = itemDAOJSON.desserializa(itemJson);
                         
-          //System.out.println("Os itens encontrados são: " + itensEncontrados);
+//          System.out.println("Os itens encontrados são: " + itensEncontrados);
 //            request.setAttribute("itensencontrados", itensEncontrados);
 //            String page = request.getSession().getAttribute("usuarioautenticado") == null ? "ResultadoDaPesquisa.jsp" : "WEB-INF/ResultadoDaPesquisaAutenticado.jsp";
-//            request.getRequestDispatcher(page).forward(request, response);
-        //}
+//           request.getRequestDispatcher(page).forward(request, response);
+        }
+        //request.getRequestDispatcher("pesquisaritemjson").forward(request, response);
     }
 
 //    @Override
