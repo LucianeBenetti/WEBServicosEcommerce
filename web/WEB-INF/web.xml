@@ -44,6 +44,10 @@
         <servlet-name>SairDoSistema</servlet-name>
         <servlet-class>servicos.SairDoSistema</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidarUsuario</servlet-name>
+        <servlet-class>servicos.ValidarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarItem</servlet-name>
         <url-pattern>/pesquisaritem</url-pattern>
@@ -98,6 +102,10 @@
     <servlet-mapping>
         <servlet-name>SairDoSistema</servlet-name>
         <url-pattern>/sairdosistema</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarUsuario</servlet-name>
+        <url-pattern>/validarusuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
