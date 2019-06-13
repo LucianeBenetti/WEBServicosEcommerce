@@ -17,20 +17,12 @@
         <servlet-class>servicos.Carrinho</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Pedido</servlet-name>
-        <servlet-class>servicos.Pedido</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AtualizarCartao</servlet-name>
         <servlet-class>servicos.AtualizarCartao</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MaisVendidos</servlet-name>
         <servlet-class>servicos.MaisVendidos</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>VoltarHomeAutenticado</servlet-name>
-        <servlet-class>servicos.VoltarHomeAutenticado</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListarTodosPedidos</servlet-name>
@@ -41,12 +33,12 @@
         <servlet-class>servicos.FecharPedido</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SairDoSistema</servlet-name>
-        <servlet-class>servicos.SairDoSistema</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ValidarUsuario</servlet-name>
         <servlet-class>servicos.ValidarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GravarPedidoNoBanco</servlet-name>
+        <servlet-class>servicos.GravarPedidoNoBanco</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarItem</servlet-name>
@@ -76,20 +68,12 @@
         <url-pattern>/carrinho</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Pedido</servlet-name>
-        <url-pattern>/pedido</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AtualizarCartao</servlet-name>
         <url-pattern>/atualizarcartao</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MaisVendidos</servlet-name>
         <url-pattern>/maisvendidos</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>VoltarHomeAutenticado</servlet-name>
-        <url-pattern>/voltarhomeautenticado</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListarTodosPedidos</servlet-name>
@@ -100,12 +84,12 @@
         <url-pattern>/fecharpedido</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SairDoSistema</servlet-name>
-        <url-pattern>/sairdosistema</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ValidarUsuario</servlet-name>
         <url-pattern>/validarusuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GravarPedidoNoBanco</servlet-name>
+        <url-pattern>/gravarpedidonobanco</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

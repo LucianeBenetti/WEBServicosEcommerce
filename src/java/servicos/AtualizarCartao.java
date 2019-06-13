@@ -1,8 +1,16 @@
 package servicos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import controle.BO.ItemPedidoBo;
+import controle.BO.UsuarioBo;
+import controle.VO.Item;
 import controle.VO.Usuario;
+import controle.integracao.UsuarioDAOJSON;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,59 +18,41 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AtualizarCartao extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
 
-        Object usuarioAutenticado = request.getSession().getAttribute("usuarioautenticado");
+        String usuario = request.getParameter("usuario");
 
-        Usuario dadosDoUsuario = (Usuario) usuarioAutenticado;
-        String nomeUsuario = dadosDoUsuario.getLogin();
-        int numeroCartao = dadosDoUsuario.getNumeroCartao();
+        Gson gson = new GsonBuilder().create();
+        Usuario usuarioFromJSON = (Usuario) gson.fromJson(usuario, Usuario.class);
+        System.out.println("Servlet.AtualizarCartao.servidor()" + usuarioFromJSON);
 
-        request.setAttribute("nomeusuario", nomeUsuario);
-        request.setAttribute("numerocartao", numeroCartao);
-        request.getRequestDispatcher("WEB-INF/AtualizarCartao.jsp").forward(request, response);
+        Usuario usuarioParaAtualizarCartao = new Usuario();
+        usuarioParaAtualizarCartao.setCodigoUsuario(usuarioFromJSON.getCodigoUsuario());
+        usuarioParaAtualizarCartao.setCodigoSeguranca(usuarioFromJSON.getCodigoSeguranca());
+        usuarioParaAtualizarCartao.setLogin(usuarioFromJSON.getLogin());
+        usuarioParaAtualizarCartao.setSenha(usuarioFromJSON.getSenha());
+        usuarioParaAtualizarCartao.setDataValidade(usuarioFromJSON.getDataValidade());
+        usuarioParaAtualizarCartao.setNumeroCartao(usuarioFromJSON.getNumeroCartao());
+
+        UsuarioBo usuarioBo = new UsuarioBo();
+        boolean cartaoAtualizado = usuarioBo.atualizarCartaoDoUsuario(usuarioParaAtualizarCartao);
+
+        String usuarioJSON = null;
+        if (cartaoAtualizado) {
+
+            UsuarioDAOJSON usuarioDAOJSON = new UsuarioDAOJSON();
+            usuarioJSON = usuarioDAOJSON.serializaParaJSON(usuarioParaAtualizarCartao);
+
+            PrintWriter out = response.getWriter();
+            out.print(usuarioJSON);
+
+            System.out.println("O item JSON é: " + usuarioJSON);
+        } else {
+            System.out.println("A pesquisa do item retornou vazio. Sem item!");
+        }
 
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

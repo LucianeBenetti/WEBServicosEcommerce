@@ -19,23 +19,22 @@ public class MaisVendidos extends HttpServlet {
             throws ServletException, IOException {
 
         String itemPedidoJson = null;
-        ItemPedido itemPedido = new ItemPedido();
         ItemPedidoBo itemPedidoBO = new ItemPedidoBo();
         ArrayList<ItemPedido> itensMaisVendidos = new ArrayList<ItemPedido>();
         itensMaisVendidos = itemPedidoBO.buscarItensMaisVendidos();
 
         if (itensMaisVendidos != null) {
-            
+
             ItemPedidoDAOJSON itemPedidoDAOJSON = new ItemPedidoDAOJSON();
             itemPedidoJson = itemPedidoDAOJSON.serializa(itensMaisVendidos);
-            
-           PrintWriter out = response.getWriter();            
+
+            PrintWriter out = response.getWriter();
             out.print(itemPedidoJson);
 
-           //System.out.println("O item JSON é: " + itemJson);
+            //System.out.println("O item JSON é: " + itemJson);
         } else {
             System.out.println("A pesquisa do item retornou vazio. Sem item!");
         }
-    
+
     }
 }

@@ -2,6 +2,8 @@ package servicos;
 
 import controle.DAO.DAOItem;
 import controle.VO.Item;
+import controle.integracao.ItemDAOJSON;
+import controle.integracao.ItemPedidoDAOJSON;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,33 +22,33 @@ public class Carrinho extends HttpServlet {
         ArrayList<Item> listaDeItens = new ArrayList<Item>();
         DAOItem DAOItem = new DAOItem();
         listaDeItens = DAOItem.buscarItensParaAdiconarAoCarrinho();
-        
-        if(listaDeItens != null){
-        HttpSession session = request.getSession();
-        session.setAttribute("listadeitens", listaDeItens);
-        
-        request.setAttribute("listadeitens", listaDeItens);
-        request.getRequestDispatcher("WEB-INF/Carrinho.jsp").forward(request, response);
-        
-        } else {
+        String itemJson = null;
+
+        if (listaDeItens != null) {
+            ItemDAOJSON itemDAOJSON = new ItemDAOJSON();
+            itemJson = itemDAOJSON.serializa(listaDeItens);
+
             PrintWriter out = response.getWriter();
-            out.println("Não foi possível listar os Itens para montar o Carrinho de Compras!");
-        
+            out.print(itemJson);
+
+            System.out.println("O item JSON é: " + itemJson);
+        } else {
+            System.out.println("A pesquisa do item retornou vazio. Sem item!");
         }
 
-    }
+}
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -60,7 +62,7 @@ public class Carrinho extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -71,7 +73,7 @@ public class Carrinho extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
