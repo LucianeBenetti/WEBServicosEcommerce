@@ -61,32 +61,7 @@ public class CrudEcommerce extends HttpServlet {
                         }
                         break;
 
-                    case "validar":
-
-                        usuario = new Usuario();
-                        usuario.setLogin(request.getParameter("login"));
-                        usuario.setSenha(request.getParameter("senha"));
-
-                        usuarioBo = new UsuarioBo();
-                        usuario = usuarioBo.validarUsuario(usuario);
-                        if (usuario != null) {
-
-                            HttpSession session = request.getSession();
-                            session.setAttribute("usuarioautenticado", usuario);
-                            request.setAttribute("datavalidade", usuario.getDataValidade());
-                            request.setAttribute("numerocartao", usuario.getNumeroCartao());
-                            request.setAttribute("codigoseguranca", usuario.getCodigoSeguranca());
-                            request.setAttribute("login", usuario.getLogin());
-                            request.setAttribute("senha", usuario.getSenha());
-
-                            request.getRequestDispatcher("WEB-INF/EcommerceValidado.jsp").forward(request, response);
-
-                        } else {
-                            Boolean validacao = false;
-                            request.getRequestDispatcher("Login.jsp").forward(request, response);
-                        }
-
-                        break;
+                    
 
                     case "pesquisar":
                         item = new Item();
@@ -97,35 +72,8 @@ public class CrudEcommerce extends HttpServlet {
                         if (item != null) {
                         }
                         break;
-
-                    case "excluirpedido":
-                       
-                        int codigoPedido = new Integer(request.getParameter("codigopedido"));
-                        System.out.println("O código do pedido é: " + codigoPedido);
+                      
                         
-                        itemPedidoBo = new ItemPedidoBo();
-                        pedidoCompraBo = new PedidoCompraBo();
-                        
-                        if(itemPedidoBo.cancelarCodigoDoPedidoCompra (codigoPedido)){
-                        
-                            System.out.println("Pedido de Compra excluído com sucesso!");
-                            boolean pedidoDeCompraCancelado = pedidoCompraBo.excluirPedidoDoUsuario(codigoPedido);
-                            
-                            if (pedidoDeCompraCancelado) {
-                                System.out.println("Pedido do Usuário excluído com sucesso!");
-                               
-                                request.setAttribute("pedidodecompracancelado", pedidoDeCompraCancelado);
-                                request.setAttribute("codigopedido", codigoPedido);
-                                request.getRequestDispatcher("WEB-INF/ExibirTodosOsPedidos.jsp").forward(request, response);
-                        
-                        }else {System.out.println("Não foi possível excluir Pedido do Usuário!");}
-
-                        
-
-                        } else {System.out.println("Não foi possível excluir o Código do Pedido do Usuário!");
-
-                        }
-                        break;
 
                     default:
                         request.getRequestDispatcher("Login.jsp").forward(request, response);

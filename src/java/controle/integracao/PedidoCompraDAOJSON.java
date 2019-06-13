@@ -25,4 +25,11 @@ public class PedidoCompraDAOJSON {
                         }.getType());
         return listaDePedidosFromJSON;
     }
+    
+      public String serializaExcluir(PedidoCompra pedidoEncontrado) {
+        Gson gson = new GsonBuilder().create();
+        String itemJson = gson.toJson(pedidoEncontrado);
+        return itemJson;
+    }   
+    
 }

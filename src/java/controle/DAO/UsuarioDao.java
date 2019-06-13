@@ -31,7 +31,7 @@ public class UsuarioDao {
 
                 usuario.setCodigoUsuario(resultado.getInt(1));
                 usuario.setCodigoSeguranca(resultado.getString(2));
-                usuario.setDataValidade(resultado.getDate(3));
+             //   usuario.setDataValidade(resultado.getDate(3));
                 usuario.setLogin(resultado.getString(4));
                 usuario.setNumeroCartao(resultado.getInt(5));
                 usuario.setSenha(resultado.getString(6));
@@ -75,13 +75,14 @@ public class UsuarioDao {
             ConexaoComBanco.closePreparedStatement(prepStmt);
             ConexaoComBanco.closeConnection(conn);
         }
+              System.out.print("novoid" + novoId);
         return novoId;
     }
 
     public Usuario pesquisarUsuario(Usuario usuario) {
 
         String query = "SELECT * FROM usuario WHERE login = ? and senha = ?";
-
+  Usuario usuarioPesquisado = null;
         Connection conn = ConexaoComBanco.getConnection();
         PreparedStatement prepStmt = ConexaoComBanco.getPreparedStatement(conn, query);
 
@@ -91,14 +92,14 @@ public class UsuarioDao {
             ResultSet resultado = prepStmt.executeQuery();
 
             while (resultado.next()) {
-                usuario = new Usuario();
+              usuarioPesquisado= new Usuario();
 
-                usuario.setCodigoUsuario(resultado.getInt(1));
-                usuario.setCodigoSeguranca(resultado.getString(2));
+                usuarioPesquisado.setCodigoUsuario(resultado.getInt(1));
+                usuarioPesquisado.setCodigoSeguranca(resultado.getString(2));
            //     usuario.setDataValidade(resultado.getDate(3));
-                usuario.setLogin(resultado.getString(4));
-                usuario.setNumeroCartao(resultado.getInt(5));
-                usuario.setSenha(resultado.getString(6));
+                usuarioPesquisado.setLogin(resultado.getString(4));
+                usuarioPesquisado.setNumeroCartao(resultado.getInt(5));
+                usuarioPesquisado.setSenha(resultado.getString(6));
             }
 
         } catch (SQLException e) {
@@ -107,7 +108,10 @@ public class UsuarioDao {
             ConexaoComBanco.closeStatement(conn);
             ConexaoComBanco.closeConnection(conn);
         }
-        return usuario;
+        
+        System.out.print("Usuario" + usuarioPesquisado);
+                
+        return usuarioPesquisado;
     }
 
     public Item pesquisarItem(String descricao) {

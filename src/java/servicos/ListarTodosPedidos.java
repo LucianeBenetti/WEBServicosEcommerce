@@ -1,5 +1,7 @@
 package servicos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import controle.BO.ItemPedidoBo;
 import controle.VO.ItemPedido;
 import controle.VO.PedidoCompra;
@@ -21,15 +23,24 @@ public class ListarTodosPedidos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Object usuario = request.getSession().getAttribute("usuarioautenticado");
+       String usuario = request.getParameter("usuarioJSON");
 
-        Usuario dadosDoUsuario = (Usuario) usuario;
-        int usuarioAutenticado = dadosDoUsuario.getCodigoUsuario();
+        Gson gson = new GsonBuilder().create();
+        Usuario usuarioFromJSON = (Usuario) gson.fromJson(usuario, Usuario.class);
+        System.out.println("Servlet.AtualizarCartao.servidor()" + usuarioFromJSON);
+
+        Usuario usuarioParaListarPedidos = new Usuario();
+        usuarioParaListarPedidos.setCodigoUsuario(usuarioFromJSON.getCodigoUsuario());
+
+
+        int codigoUsuarioAutenticado = usuarioParaListarPedidos.getCodigoUsuario();
 
         ArrayList<PedidoCompra> pedidosCompra = new ArrayList<PedidoCompra>();
 
         ItemPedidoBo itemPedidoBo = new ItemPedidoBo();
-        pedidosCompra = itemPedidoBo.BuscarTodosOsPedidos(usuarioAutenticado);
+        pedidosCompra = itemPedidoBo.BuscarTodosOsPedidos(codigoUsuarioAutenticado);
+        
+        System.out.println("servicos.ListarTodosPedidos.doGet()" + pedidosCompra);
         String pedidoCompraJSON = null;
 
         if (pedidosCompra != null) {

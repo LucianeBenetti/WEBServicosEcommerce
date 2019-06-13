@@ -133,7 +133,7 @@ public class ItemPedidoDAO {
                 Usuario usuario = UsuarioDao.BuscarUsuarioPorCodigoDoUsuario(result.getInt(2));
                 usuario.getCodigoUsuario();
                 pedidoCompra.setUsuario(usuario);
-                pedidoCompra.setDataPedido(result.getDate(3));
+             //   pedidoCompra.setDataPedido(result.getDate(3));
                 pedidoCompra.setValorTotal(result.getDouble(4));
                 pedidosCompra.add(pedidoCompra);
             }

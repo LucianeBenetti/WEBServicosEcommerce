@@ -40,6 +40,14 @@
         <servlet-name>GravarPedidoNoBanco</servlet-name>
         <servlet-class>servicos.GravarPedidoNoBanco</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExcluirPedido</servlet-name>
+        <servlet-class>servicos.ExcluirPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarUsuario</servlet-name>
+        <servlet-class>servicos.CadastrarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisarItem</servlet-name>
         <url-pattern>/pesquisaritem</url-pattern>
@@ -90,6 +98,14 @@
     <servlet-mapping>
         <servlet-name>GravarPedidoNoBanco</servlet-name>
         <url-pattern>/gravarpedidonobanco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirPedido</servlet-name>
+        <url-pattern>/excluirpedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarUsuario</servlet-name>
+        <url-pattern>/cadastrarusuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

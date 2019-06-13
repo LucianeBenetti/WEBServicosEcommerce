@@ -26,8 +26,7 @@ public class AtualizarCartao extends HttpServlet {
 
         Gson gson = new GsonBuilder().create();
         Usuario usuarioFromJSON = (Usuario) gson.fromJson(usuario, Usuario.class);
-        System.out.println("Servlet.AtualizarCartao.servidor()" + usuarioFromJSON);
-
+   
         Usuario usuarioParaAtualizarCartao = new Usuario();
         usuarioParaAtualizarCartao.setCodigoUsuario(usuarioFromJSON.getCodigoUsuario());
         usuarioParaAtualizarCartao.setCodigoSeguranca(usuarioFromJSON.getCodigoSeguranca());
