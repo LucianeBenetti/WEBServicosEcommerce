@@ -27,16 +27,18 @@ public class GravarPedidoNoBanco extends HttpServlet {
         String quantidadeItens = request.getParameter("qtdJson");
         String total = request.getParameter("totalDoPedido");
 
-        Gson gson = new GsonBuilder().create();
-        Usuario usuarioFromJSON = (Usuario) gson.fromJson(usuarioAutenticado, Usuario.class);
+        Gson gsonUsuario = new GsonBuilder().create();
+        Usuario usuarioFromJSON = (Usuario) gsonUsuario.fromJson(usuarioAutenticado, Usuario.class);
         System.out.println("usuraio servidor()" + usuarioFromJSON);
 
-        gson = new GsonBuilder().create();
-        Item itemFromJSON = (Item) gson.fromJson(itensDoPedido, Item.class);
+        Gson gsonItem = new GsonBuilder().create();
+        ArrayList<Item> itemFromJSON = (ArrayList<Item>) gsonItem.fromJson(itensDoPedido,
+                new TypeToken<ArrayList<Item>>() {
+                }.getType());
         System.out.println("itens servidor()" + itemFromJSON);
 
-        gson = new GsonBuilder().create();
-        ArrayList<Integer> qunatidadadesFromJSON = (ArrayList<Integer>) gson.fromJson(quantidadeItens,
+        Gson gsonQtdade = new GsonBuilder().create();
+        ArrayList<Integer> qunatidadadesFromJSON = (ArrayList<Integer>) gsonQtdade.fromJson(quantidadeItens,
                 new TypeToken<ArrayList<Integer>>() {
                 }.getType());
         System.out.println("qunatidades servidor()" + qunatidadadesFromJSON);
