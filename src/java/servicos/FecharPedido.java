@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servicos;
 
 import controle.BO.ItemPedidoBo;
@@ -17,10 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Marco
- */
 public class FecharPedido extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -48,7 +39,6 @@ public class FecharPedido extends HttpServlet {
         ArrayList<Item> pedidoFechado = (ArrayList<Item>) fecharPedido;
         ArrayList<Integer> qtidades = (ArrayList<Integer>) quantidadeItem;
         
-     
         double valorTotal = new Double((double) total);
              
         System.out.println("valorTotal " + valorTotal);

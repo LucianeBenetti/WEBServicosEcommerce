@@ -32,7 +32,6 @@ public class ListarTodosPedidos extends HttpServlet {
         Usuario usuarioParaListarPedidos = new Usuario();
         usuarioParaListarPedidos.setCodigoUsuario(usuarioFromJSON.getCodigoUsuario());
 
-
         int codigoUsuarioAutenticado = usuarioParaListarPedidos.getCodigoUsuario();
 
         ArrayList<PedidoCompra> pedidosCompra = new ArrayList<PedidoCompra>();

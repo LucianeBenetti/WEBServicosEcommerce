@@ -5,14 +5,6 @@
         <servlet-class>servicos.PesquisarItem</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CrudEcommerce</servlet-name>
-        <servlet-class>servicos.CrudEcommerce</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CrudComprar</servlet-name>
-        <servlet-class>servicos.CrudComprar</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Carrinho</servlet-name>
         <servlet-class>servicos.Carrinho</servlet-class>
     </servlet>
@@ -63,14 +55,6 @@
     <welcome-file-list>
         <welcome-file>LuMarEcommerce.jsp</welcome-file>
     </welcome-file-list>
-    <servlet-mapping>
-        <servlet-name>CrudEcommerce</servlet-name>
-        <url-pattern>/crudecommerce</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CrudComprar</servlet-name>
-        <url-pattern>/crudcomprar</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Carrinho</servlet-name>
         <url-pattern>/carrinho</url-pattern>
